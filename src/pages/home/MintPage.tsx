@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg} from "src/config/image"
+import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg, NFTCarouselImg } from "src/config/image"
 import styled from "styled-components"
 
 export const MingPage = () => {
@@ -15,43 +15,46 @@ export const MingPage = () => {
         }
     }
     return(
-        <MingPageContainer>
-            <Topsection />
-            <Img alt="floating-card" />
-            <MintCard>
-                <MintCardImg>
-                    <img src={MintCardGif} alt="mincard-gif" style={{ width: '100%', height: '100%' }} />
-                </MintCardImg>
-                <MintCardContent>
-                    <MintCardContentWraper>
-                        <MintCardPrimaryLabel>
-                            Mint your
-                        </MintCardPrimaryLabel>
-                        <MintCardSecondaryLabel>
-                            Wearables
-                        </MintCardSecondaryLabel>
-                        <MintCardAction>
-                            <MintInputBox>
-                                <OperationBtn onClick={() => handleClick("minus")}>-</OperationBtn>
-                                <MintInput type="number" value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
-                                <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
-                            </MintInputBox>
-                            <MintButton>Mint Now</MintButton>
-                        </MintCardAction>
-                        <MintCardFooter>
-                            <EtherValueContainer>
-                                <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
-                                <EtherValue>0.03 ETH</EtherValue>
-                            </EtherValueContainer>
-                            <FreebiesContainer>
-                                <FreebiesLabel>Freebies</FreebiesLabel>
-                                <FreebiesValue>1</FreebiesValue>
-                            </FreebiesContainer>
-                        </MintCardFooter>
-                    </MintCardContentWraper>
-                </MintCardContent>
-            </MintCard>
-        </MingPageContainer>
+        <>
+            <MingPageContainer>
+                <Topsection />
+                <Img alt="floating-card" />
+                <MintCard>
+                    <MintCardImg>
+                        <img src={MintCardGif} alt="mincard-gif" style={{ width: '100%', height: '100%' }} />
+                    </MintCardImg>
+                    <MintCardContent>
+                        <MintCardContentWraper>
+                            <MintCardPrimaryLabel>
+                                Mint your
+                            </MintCardPrimaryLabel>
+                            <MintCardSecondaryLabel>
+                                Wearables
+                            </MintCardSecondaryLabel>
+                            <MintCardAction>
+                                <MintInputBox>
+                                    <OperationBtn onClick={() => handleClick("minus")}>-</OperationBtn>
+                                    <MintInput type="number" value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
+                                    <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
+                                </MintInputBox>
+                                <MintButton>Mint Now</MintButton>
+                            </MintCardAction>
+                            <MintCardFooter>
+                                <EtherValueContainer>
+                                    <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
+                                    <EtherValue>0.03 ETH</EtherValue>
+                                </EtherValueContainer>
+                                <FreebiesContainer>
+                                    <FreebiesLabel>Freebies</FreebiesLabel>
+                                    <FreebiesValue>1</FreebiesValue>
+                                </FreebiesContainer>
+                            </MintCardFooter>
+                        </MintCardContentWraper>
+                    </MintCardContent>
+                </MintCard>
+            </MingPageContainer>
+            <NFTCarousel />
+        </>
     )
 }
 
@@ -81,10 +84,10 @@ const Img = styled.img`
     object-fit: cover;
     max-width: 1540px;
     user-select: none;
+    object-position: top;
     @media screen and (max-width: 450px) {
         content: url(${FloatingCardMobile});
         height: 640px;
-        object-position: top;
     }
 `
 
@@ -250,14 +253,8 @@ const MintCardFooter = styled.div`
 
 const EtherValueContainer = styled.div`
     display: flex;
-    gap: 15px;
+    gap: 6px;
     align-items: center;
-    @media screen and (max-width: 960px) {
-        gap: 10px;
-    }
-    @media screen and (max-width: 450px) {
-        gap: 6px;
-    }
 `
 
 const EtherIcon = styled.img`
@@ -299,4 +296,19 @@ const FreebiesValue = styled.div`
     @media screen and (max-width: 450px) {
         font-size: 10px;
     }
+`
+
+const NFTCarousel = styled.div`
+    width: 100%;
+    height: 240px;
+    background-image: url(${NFTCarouselImg});
+    @keyframes ani {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 100vw 0;
+        }
+    }
+    animation: ani 10s linear infinite;
 `
