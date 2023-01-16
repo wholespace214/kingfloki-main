@@ -37,15 +37,32 @@ const GiftCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 392px;
+    @media screen and (max-width: 768px) {
+        width: 320px;
+    }
+
+    @media screen and (max-width: 450px) {
+        width: 225px;
+    }
 `
 const GiftCardImg = styled.img`
     width: 100%;
     height: 325px;
+    @media screen and (max-width: 768px) {
+        height: 260px;
+    }
+
+    @media screen and (max-width: 450px) {
+        height: 185px;
+    }
 `
 
 const GiftCardContent = styled.div`
     padding: 32px 42px;
     background: #2B0707 0% 0% no-repeat padding-box;
+    @media screen and (max-width: 450px) {
+        padding: 18px 30px;
+    }
 `
 
 const GiftCardTitle = styled.div`
@@ -54,13 +71,27 @@ const GiftCardTitle = styled.div`
     font-family: 'gotham-bold';
     font-size: 25px;
     text-align: center;
+    align-items: center;
     justify-content: center;
+    @media screen and (max-width: 768px) {
+       font-size: 18px;
+    }
+
+    @media screen and (max-width: 450px) {
+       font-size: 20px;
+    }
 `
 
 const GiftCardDetail = styled.div`
     font-size: 14px;
     padding-top: 22px;
     text-align: center;
+    @media screen and (max-width: 768px) {
+       font-size: 12px;
+    }
+    @media screen and (max-width: 450px) {
+       font-size: 11px;
+    }
 `
 
 const GiftCardAction = styled.div`
@@ -80,11 +111,19 @@ const ComingSoonButton = styled.div`
     margin-top: 18px;
     background: #F48E37 0% 0% no-repeat padding-box;
     cursor: pointer;
+    @media screen and (max-width: 450px) {
+        width: 95px;
+        height: 25px;
+        font-size: 9px;
+    }
 `
 
 const Img = styled.img`
     width: 30px;
     height: 30px;
+    @media screen and (max-width: 450px) {
+       display: none;
+    }
 `
 
 const ALink = styled.a`

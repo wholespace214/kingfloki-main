@@ -48,12 +48,22 @@ const PrimaryLayer = styled.div`
     width: 100%;
     height: 327px;
     background: #2B0707 0% 0% no-repeat padding-box;
+    @media screen and (max-width: 1072px) {
+        height: 120px;
+    }
 `
 
 const SecondaryLayer = styled.div`
     width: 100%;
     height: 450px;
     background: #430202 0% 0% no-repeat padding-box;
+     @media screen and (max-width: 1072px) {
+        height: 1366px;
+    }
+    @media screen and (max-width: 768px) {
+       height: 1000px;
+    }
+
 `
 
 const GiftCardsWrapper = styled.div`
@@ -62,5 +72,8 @@ const GiftCardsWrapper = styled.div`
     position: absolute;
     @media screen and (max-width: 1072px) {
         flex-direction: column;
+    }
+    @media screen and (max-width: 450px) {
+        padding-top: 120px;
     }
 `
