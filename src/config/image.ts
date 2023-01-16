@@ -14,5 +14,11 @@ import FloatingCard from '../assets/png/floating-cards.png'
 import FloatingCardMobile from '../assets/png/floating-cards-mobile.png'
 import MintCardGif from "../assets/gif/mint-gif.gif"
 import NFTCarouselImg from '../assets/png/carousel.png'
+import RaityGif from '../assets/gif/raity-gif.gif'
+import CharacterGroup from '../assets/png/groupage.png'
+import GradientRarity from '../assets/png/gradient-rarity.png'
+import TradeOpenseaImg from '../assets/png/trade-on-opensea.png'
+import PotionBox from '../assets/png/potion-box.png'
+import OpenseaLogo from '../assets/svg/opensea-logo.svg'
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg }
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo }
