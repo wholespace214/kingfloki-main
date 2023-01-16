@@ -20,5 +20,6 @@ import GradientRarity from '../assets/png/gradient-rarity.png'
 import TradeOpenseaImg from '../assets/png/trade-on-opensea.png'
 import PotionBox from '../assets/png/potion-box.png'
 import OpenseaLogo from '../assets/svg/opensea-logo.svg'
+import BgBottom from '../assets/png/bg-bottom.png'
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo }
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom }
