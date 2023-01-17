@@ -39,7 +39,7 @@ export const Explanation = () => {
 }
 
 const ExplanationContainer = styled.div`
-    background-color: #2B0707;
+    background-color: #2e0a08;
     padding: 64px;
     display: flex;
     justify-content: center;
@@ -100,6 +100,7 @@ const ExplainContent = styled.div`
 const ExplainMiniTitle = styled.div`
     font-size: 14px;
     font-family: 'gotham-bold';
+    text-transform: uppercase;
     color: #F48E37;
     @media screen and (max-width: 1064px) {
          font-size: 20px;
@@ -123,16 +124,14 @@ const ExplainContentContainer = styled.div`
 const ExplainContentSection = styled.div`
     width: 250px;
     height: auto;
+    font-size: 14px;
     @media screen and (max-width: 1064px) {
-         font-size: 16px;
          width: 500px;
     }
     @media screen and (max-width: 640px) {
-         font-size: 12px;
          width: 320px;
     }
     @media screen and (max-width: 450px) {
-         font-size: 12px;
          width: 250px;
     }
 `

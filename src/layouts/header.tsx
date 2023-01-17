@@ -25,7 +25,7 @@ export const Header = () => {
 };
 
 const HeaderContainer = styled.div`
-  background-color: #430202;
+  background-color: #490800;
   height: 62px;
   padding-left: 32px;
   display: flex;

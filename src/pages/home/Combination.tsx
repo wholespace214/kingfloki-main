@@ -38,7 +38,7 @@ const CombinationContainer = styled.div`
     padding: 105px;
     display: flex;
     justify-content: center;
-    background: #430202 0% 0% no-repeat padding-box;
+    background: #490800 0% 0% no-repeat padding-box;
     @media screen and (max-width: 1072px) {
         padding: 64px;
     }
@@ -132,8 +132,8 @@ const NFTCharacters = styled.div`
     /* background: transparent url(${GradientRarity}) 0% 0% no-repeat padding-box; */
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #430202; 
-    background: transparent linear-gradient(180deg, #430202 20%, #F09648 100%) 0% 0% no-repeat padding-box;
+    background-color: #490800; 
+    background: transparent linear-gradient(180deg, #490800 20%, #F09648 100%) 0% 0% no-repeat padding-box;
 `
 
 // const Img = styled.img`
