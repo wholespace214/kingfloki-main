@@ -39,7 +39,7 @@ export const Explanation = () => {
 }
 
 const ExplanationContainer = styled.div`
-    background-color: #2e0a08;
+    background-color: rgb(46,9,9);
     padding: 64px;
     display: flex;
     justify-content: center;

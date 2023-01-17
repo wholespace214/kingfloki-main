@@ -38,7 +38,7 @@ const CombinationContainer = styled.div`
     padding: 105px;
     display: flex;
     justify-content: center;
-    background: #490800 0% 0% no-repeat padding-box;
+    background: #4A0701 0% 0% no-repeat padding-box;
     @media screen and (max-width: 1072px) {
         padding: 64px;
     }
