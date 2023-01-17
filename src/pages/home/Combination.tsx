@@ -1,13 +1,14 @@
 import styled from "styled-components"
-import { RaityGif, CharacterGroup, GradientRarity } from 'src/config/image'
+import { CharacterGroup, GradientRarity, KFVideo3 } from 'src/config/image'
 
 export const Combination = () => {
     return(
         <>
             <CombinationContainer>
                 <CombinationWrapper>
-                    <NFTCard>
-                        <Img src={RaityGif} alt="raity-gif" />
+                    <NFTCard playsInline loop autoPlay muted id="nft-video-desktop">
+                        {/* <Img src={RaityGif} alt="raity-gif" /> */}
+                        <source src={KFVideo3} type="video/mp4" id="background-video-source-desktop" /> 
                     </NFTCard>
                     <CombinationDetails>
                         <CombinationTitle>5 rarities, 6 categories, 2m+ combination</CombinationTitle>
@@ -55,7 +56,7 @@ const CombinationWrapper = styled.div`
     }
 `
 
-const NFTCard = styled.div`
+const NFTCard = styled.video`
     width: 420px;
     height: auto;
     @media screen and (max-width: 1072px) {
@@ -135,10 +136,10 @@ const NFTCharacters = styled.div`
     background: transparent linear-gradient(180deg, #430202 20%, #F09648 100%) 0% 0% no-repeat padding-box;
 `
 
-const Img = styled.img`
-    width: 100%;
-    height: auto;
-`
+// const Img = styled.img`
+//     width: 100%;
+//     height: auto;
+// `
 const NFTImg = styled.img`
     width: 100%;    
     height: auto;

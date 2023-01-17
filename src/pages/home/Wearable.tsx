@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import styled, { css } from "styled-components";
 import { WearableBg, KingFloki3D, FooterLogoSvg, NftGamesSvg, EthereumSvg, CharactersPng } from 'src/config/image'
 import { AiFillPlayCircle } from 'react-icons/ai'
 import { SiDiscord } from 'react-icons/si'
+import ModalVideo from 'react-modal-video'
 
 export const Wearable = () => {
+  const [isVideoOpen, setVideoOpen] = useState(false);
     return(
         <WearableContainer>
           <Img src={KingFloki3D} alt='king-floki-3d' />
@@ -21,12 +24,13 @@ export const Wearable = () => {
               </EthereumIcon>
           </KingIcons>
           <ButtonGroup>
-            <PlayVideoButton>
+            <PlayVideoButton onClick={() => setVideoOpen(true)}>
               <ReactIcon>
                 <AiFillPlayCircle style={{ width: '100%', height: '100%' }} />
               </ReactIcon>
               Play Video
             </PlayVideoButton>
+           
             <DiscordButton>
               <ReactIcon>
                 <SiDiscord style={{ width: '100%', height: '100%' }} />
@@ -37,6 +41,12 @@ export const Wearable = () => {
           <Characters>
             <img src={CharactersPng} alt="character-png" style={{ width: '100%', height: '100%' }} />
           </Characters>
+           <ModalVideo
+            channel="youtube"
+            isOpen={isVideoOpen}
+            videoId="G-mIgkf0zAs"
+            onClose={() => setVideoOpen(false)}
+          />
       </WearableContainer>
     )
 }

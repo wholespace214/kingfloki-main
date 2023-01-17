@@ -1,3 +1,4 @@
+import { KFVideo1, KFVideo2, MobKFVideo1, MobKFVideo2 } from "src/config/image"
 import styled from "styled-components"
 
 export const Explanation = () => {
@@ -5,9 +6,14 @@ export const Explanation = () => {
         <>
             <ExplanationContainer>
                 <ExplanationWrapper>
-                    <KingFlokiVideo>
-
-                    </KingFlokiVideo>
+                    <DeskKingFlokiVideo playsInline loop autoPlay muted id="my-video-desktop">
+                        <source src={KFVideo1} type="video/mp4" id="background-video-source-desktop" />
+                        Your browser does not support the video tag.
+                    </DeskKingFlokiVideo>
+                    <MobKingFlokiVideo playsInline loop autoPlay muted id="my-video-mobile">
+                        <source src={MobKFVideo1} type="video/mp4" id="background-video-source-mobile" />
+                        Your browser does not support the video tag.
+                    </MobKingFlokiVideo>
                     <ExplainSection>
                         <ExplainTitle>Who is King Floki</ExplainTitle>
                         <ExplainContent>
@@ -21,7 +27,13 @@ export const Explanation = () => {
                     </ExplainSection>
                 </ExplanationWrapper>
             </ExplanationContainer>
-            <NFTVideo />
+            <DeskNFTVideo playsInline loop autoPlay muted id="nft-video-desktop">
+                <source src={KFVideo2} type="video/mp4" id="background-video-source-desktop" />
+            </DeskNFTVideo>
+            <MobNFTVideo playsInline loop autoPlay muted id="nft-video-mobile">
+                <source src={MobKFVideo2} type="video/mp4" id="background-video-source-mobile" />
+            </MobNFTVideo>
+            
         </>
     )
 }
@@ -36,22 +48,36 @@ const ExplanationContainer = styled.div`
 `
 const ExplanationWrapper = styled.div`
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 78px;
+     @media screen and (max-width: 450px) {
+        gap: 35px;
+    }
 `
-const KingFlokiVideo = styled.div`
+const DeskKingFlokiVideo = styled.video`
     width: 100%;
-    height: 420px;
-    background-color: #FFE3A4;
-    /* @media screen and (max-width: 1064px) {
-        width: 640px;
-    } */
+    object-fit: contain;
+    @media screen and (max-width: 450px) {
+        display: none;
+    }
+`
+
+const MobKingFlokiVideo = styled.video`
+    width: 100%;
+    object-fit: contain;
+    display: none;
+    @media screen and (max-width: 450px) {
+        display: block;
+    }
 `
 
 const ExplainSection = styled.div`
     display: flex;
+    /* justify-content: center; */
     flex-direction: column;
     gap: 24px;
+    /* width: 500px; */
 `
 
 const ExplainTitle = styled.div`
@@ -111,8 +137,22 @@ const ExplainContentSection = styled.div`
     }
 `
 
-const NFTVideo = styled.div`
-    background-color: #FFE3A4;
-    height: 496px;
+const DeskNFTVideo = styled.video`
     width: 100%;
+    height: auto;
+    object-fit: cover;
+    min-height: 350px;
+    @media screen and (max-width: 450px) {
+        display: none;
+    }
+`
+
+const MobNFTVideo = styled.video`
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: none;
+    @media screen and (max-width: 450px) {
+        display: block;
+    }
 `

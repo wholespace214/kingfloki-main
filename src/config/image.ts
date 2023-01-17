@@ -21,5 +21,11 @@ import TradeOpenseaImg from '../assets/png/trade-on-opensea.png'
 import PotionBox from '../assets/png/potion-box.png'
 import OpenseaLogo from '../assets/svg/opensea-logo.svg'
 import BgBottom from '../assets/png/bg-bottom.png'
+import KFVideo1 from '../assets/video/KF-Website-1.mp4'
+import MobKFVideo1 from '../assets/video/KF-Website-1-MOB.mp4'
+import KFVideo2 from '../assets/video/KF-Website-2.mp4'
+import MobKFVideo2 from '../assets/video/KF-Website-2-MOB.mp4'
+import KFVideo3 from '../assets/video/KF-Website-3.mp4'
+import MobKFVideo3 from '../assets/video/KF-Website-3-MOB.mp4'
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom }
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3 }
