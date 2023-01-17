@@ -232,7 +232,6 @@ const MintInput = styled.input`
     border: none;
     background-color: #FFFFFF;
     width: 100%;
-    height: 100%;
     color: #2B0707;
     font-family: 'gotham-bold';
     font-size: 20px;
