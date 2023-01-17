@@ -21,6 +21,7 @@ import TradeOpenseaImg from '../assets/png/trade-on-opensea.png'
 import PotionBox from '../assets/png/potion-box.png'
 import OpenseaLogo from '../assets/svg/opensea-logo.svg'
 import BgBottom from '../assets/png/bg-bottom.png'
+import EbmKFVideo1 from '../assets/video/KF-Website 1-vp9-chrome.webm'
 import KFVideo1 from '../assets/video/KF-Website-1.mp4'
 import MobKFVideo1 from '../assets/video/KF-Website-1-MOB.mp4'
 import KFVideo2 from '../assets/video/KF-Website-2.mp4'
@@ -32,4 +33,4 @@ import NavTelegramIcon from "../assets/svg/menu_icon-02.svg"
 import NavDiscordIcon from "../assets/svg/menu_icon-03.svg"
 import NavOpenseaIcon from "../assets/svg/menu_icon-04.svg"
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon }
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon, EbmKFVideo1 }

@@ -1,4 +1,4 @@
-import { KFVideo1, KFVideo2, MobKFVideo1, MobKFVideo2 } from "src/config/image"
+import { KFVideo1, KFVideo2, MobKFVideo1, MobKFVideo2, EbmKFVideo1 } from "src/config/image"
 import styled from "styled-components"
 
 export const Explanation = () => {
@@ -7,11 +7,12 @@ export const Explanation = () => {
             <ExplanationContainer>
                 <ExplanationWrapper>
                     <DeskKingFlokiVideo playsInline loop autoPlay muted id="my-video-desktop">
-                        <source src={KFVideo1} type="video/mp4" id="background-video-source-desktop" />
+                        <source src={KFVideo1} type='video/mp4; codecs="hvc1"' id="background-video-source-desktop" />
+                        <source src={EbmKFVideo1} type="video/webm"></source>
                         Your browser does not support the video tag.
                     </DeskKingFlokiVideo>
                     <MobKingFlokiVideo playsInline loop autoPlay muted id="my-video-mobile">
-                        <source src={MobKFVideo1} type="video/mp4" id="background-video-source-mobile" />
+                        <source src={MobKFVideo1} type='video/mp4' id="background-video-source-mobile" />
                         Your browser does not support the video tag.
                     </MobKingFlokiVideo>
                     <ExplainSection>
@@ -39,7 +40,7 @@ export const Explanation = () => {
 }
 
 const ExplanationContainer = styled.div`
-    background-color: rgb(46,9,9);
+    background-color: #2B0707;
     padding: 64px;
     display: flex;
     justify-content: center;
