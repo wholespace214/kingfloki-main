@@ -185,14 +185,22 @@ const MintCardAction = styled.div`
 const MintInputBox = styled.div`
     display: flex;
     height: 60px;
+    min-height: 60px;
+    max-height: 60px;
     @media screen and (max-width: 960px) {
         height: 42px;
+        min-height: 42px;
+        max-height: 42px;
     }
     @media screen and (max-width: 450px) {
         height: 32px;
+        min-height: 32px;
+        max-height: 32px;
     }
     @media screen and (max-width: 350px) {
         height: 27px;
+        min-height: 27px;
+        max-height: 27px;
     }
 `
 const OperationBtn = styled.div`
@@ -207,12 +215,15 @@ const OperationBtn = styled.div`
     user-select: none;
     @media screen and (max-width: 960px) {
         min-width: 42px;
+        max-width: 42px;
     }
     @media screen and (max-width: 450px) {
         min-width: 32px;
+        max-width: 32px;
     }
     @media screen and (max-width: 350px) {
         min-width: 27px;
+        max-width: 27px;
     }
 `
 
@@ -221,6 +232,7 @@ const MintInput = styled.input`
     border: none;
     background-color: #FFFFFF;
     width: 100%;
+    height: 100%;
     color: #2B0707;
     font-family: 'gotham-bold';
     font-size: 20px;
