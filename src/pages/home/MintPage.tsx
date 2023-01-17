@@ -333,4 +333,15 @@ const NFTCarousel = styled.div`
        to { background-position: 0%; }
     }
     animation: ani 6000s linear infinite;
+    @media screen and (max-width: 1200px) {
+        animation: ani 10000s linear infinite;
+    }
+
+    @media screen and (max-width: 840px) {
+        animation: ani 12000s linear infinite;
+    }
+
+    @media screen and (max-width: 450px) {
+        animation: ani 15000s linear infinite;
+    }
 `
