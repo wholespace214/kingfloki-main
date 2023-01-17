@@ -42,6 +42,10 @@ const GiftCardContainer = styled.div`
     }
 
     @media screen and (max-width: 450px) {
+        width: 270px;
+    }
+
+    @media screen and (max-width: 350px) {
         width: 225px;
     }
 `
@@ -53,6 +57,10 @@ const GiftCardImg = styled.img`
     }
 
     @media screen and (max-width: 450px) {
+        height: 230px;
+    }
+
+    @media screen and (max-width: 350px) {
         height: 185px;
     }
 `
@@ -89,7 +97,7 @@ const GiftCardDetail = styled.div`
     @media screen and (max-width: 768px) {
        font-size: 12px;
     }
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 350px) {
        font-size: 11px;
     }
 `
@@ -112,6 +120,11 @@ const ComingSoonButton = styled.div`
     background: #F48E37 0% 0% no-repeat padding-box;
     cursor: pointer;
     @media screen and (max-width: 450px) {
+        width: 120px;
+        height: 30px;
+        font-size: 10px;
+    }
+    @media screen and (max-width: 350px) {
         width: 95px;
         height: 25px;
         font-size: 9px;

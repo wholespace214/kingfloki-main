@@ -87,6 +87,9 @@ const Img = styled.img`
     object-position: top;
     @media screen and (max-width: 450px) {
         content: url(${FloatingCardMobile});
+    }
+    @media screen and (max-width: 350px) {
+        content: url(${FloatingCardMobile});
         height: 640px;
     }
 `
@@ -118,6 +121,10 @@ const MintCardImg = styled.div`
         height: 363px;
     }
     @media screen and (max-width: 450px) {
+        width: 270px;
+        height: 310px;
+    }
+    @media screen and (max-width: 350px) {
         width: 224px;
         height: 263px;
     }
@@ -134,6 +141,10 @@ const MintCardContent = styled.div`
         height: 348px;
     }
     @media screen and (max-width: 450px) {
+        width: 270px;
+        height: 300px;
+    }
+    @media screen and (max-width: 350px) {
         width: 224px;
         height: 240px;
     }
@@ -147,7 +158,7 @@ const MintCardPrimaryLabel = styled.div`
     @media screen and (max-width: 960px) {
         font-size: 22px;
     }
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 350px) {
         font-size: 16px;
     }
 `
@@ -159,7 +170,7 @@ const MintCardSecondaryLabel = styled.div`
     @media screen and (max-width: 960px) {
         font-size: 65px;
     }
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 350px) {
         font-size: 47px;
     }
 `
@@ -178,6 +189,9 @@ const MintInputBox = styled.div`
         height: 42px;
     }
     @media screen and (max-width: 450px) {
+        height: 32px;
+    }
+    @media screen and (max-width: 350px) {
         height: 27px;
     }
 `
@@ -195,6 +209,9 @@ const OperationBtn = styled.div`
         min-width: 42px;
     }
     @media screen and (max-width: 450px) {
+        min-width: 32px;
+    }
+    @media screen and (max-width: 350px) {
         min-width: 27px;
     }
 `
@@ -211,7 +228,7 @@ const MintInput = styled.input`
     @media screen and (max-width: 960px) {
         font-size: 15px;
     }
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 350px) {
         font-size: 11px;
     }
 `
@@ -234,6 +251,10 @@ const MintButton = styled.div`
         font-size: 14px;
     }
     @media screen and (max-width: 450px) {
+        height: 32px;
+        font-size: 12px;
+    }
+    @media screen and (max-width: 350px) {
         height: 27px;
         font-size: 11px;
     }
