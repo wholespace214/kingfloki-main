@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { CharacterGroup, GradientRarity, KFVideo3 } from 'src/config/image'
+import { CharacterGroup, EbmKFVideo3, GradientRarity, KFVideo3 } from 'src/config/image'
 
 export const Combination = () => {
     return(
@@ -8,7 +8,9 @@ export const Combination = () => {
                 <CombinationWrapper>
                     <NFTCard playsInline loop autoPlay muted id="nft-video-desktop">
                         {/* <Img src={RaityGif} alt="raity-gif" /> */}
-                        <source src={KFVideo3} type="video/mp4" id="background-video-source-desktop" /> 
+                        <source src={KFVideo3} type='video/mp4; codecs="hvc1"' id="background-video-source-desktop" /> 
+                        <source src={EbmKFVideo3} type="video/webm"></source>
+                        Your browser does not support the video tag.
                     </NFTCard>
                     <CombinationDetails>
                         <CombinationTitle>5 rarities, 6 categories, 2m+ combination</CombinationTitle>

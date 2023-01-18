@@ -64,14 +64,14 @@ const MingPageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #430202;
+    background-color: #490800;
     position: relative;
 `
 
 const Topsection = styled.div`
     width: 100%;
     height: 50px;
-    background-color: #430202;
+    background-color: #490800;
     @media screen and (max-width: 450px) {
         height: 20px;
     }

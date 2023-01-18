@@ -1,4 +1,4 @@
-import { KFVideo1, KFVideo2, MobKFVideo1, MobKFVideo2, EbmKFVideo1 } from "src/config/image"
+import { KFVideo1, KFVideo2, MobKFVideo1, MobKFVideo2, EbmKFVideo1, EbmMobKFVideo1 } from "src/config/image"
 import styled from "styled-components"
 
 export const Explanation = () => {
@@ -12,7 +12,8 @@ export const Explanation = () => {
                         Your browser does not support the video tag.
                     </DeskKingFlokiVideo>
                     <MobKingFlokiVideo playsInline loop autoPlay muted id="my-video-mobile">
-                        <source src={MobKFVideo1} type='video/mp4' id="background-video-source-mobile" />
+                        <source src={MobKFVideo1} type='video/mp4; codecs="hvc1"' id="background-video-source-mobile" />
+                        <source src={EbmMobKFVideo1} type="video/webm"></source>
                         Your browser does not support the video tag.
                     </MobKingFlokiVideo>
                     <ExplainSection>

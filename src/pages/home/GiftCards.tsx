@@ -56,7 +56,7 @@ const PrimaryLayer = styled.div`
 const SecondaryLayer = styled.div`
     width: 100%;
     height: 450px;
-    background: #430202 0% 0% no-repeat padding-box;
+    background: #490800 0% 0% no-repeat padding-box;
      @media screen and (max-width: 1072px) {
         height: 1366px;
     }
