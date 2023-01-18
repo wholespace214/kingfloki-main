@@ -119,6 +119,7 @@ const ComingSoonButton = styled.div`
     margin-top: 18px;
     background: #F48E37 0% 0% no-repeat padding-box;
     cursor: pointer;
+    text-transform: uppercase;
     @media screen and (max-width: 450px) {
         width: 120px;
         height: 30px;
