@@ -53,14 +53,9 @@ const WelcomeCardContainer = styled.div`
     position: absolute;
     top: -90px;
     @media screen and (max-width: 1160px) {
-        top: 300px;
+        top: -60px
     }
-    @media screen and (max-width: 768px) {
-        top: 200px;
-    }
-    @media screen and (max-width: 540px) {
-        top: 160px;
-    }
+
 `
 
 const WelcomeCardWrapper = styled.div`
@@ -69,6 +64,7 @@ const WelcomeCardWrapper = styled.div`
     @media screen and (max-width: 1160px) {
         flex-direction: column-reverse;
         width: 450px;
+        height: auto;
     }
     @media screen and (max-width: 768px) {
         width: 370px;
