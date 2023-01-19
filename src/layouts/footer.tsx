@@ -9,8 +9,8 @@ export const Footer = () => {
         <KingLogo src={FooterLogoSvg} alt="footer-logo" />
       </LogoSection>
       <FooterLinks>
-        <FooterLink>Cookie prefereneces</FooterLink>
-        <VerticalDivider>|</VerticalDivider>
+        {/* <FooterLink>Cookie prefereneces</FooterLink>
+        <VerticalDivider>|</VerticalDivider> */}
         <FooterLink>Privacy police</FooterLink>
         <VerticalDivider>|</VerticalDivider>
         <FooterLink>Term of use</FooterLink>

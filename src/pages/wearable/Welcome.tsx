@@ -48,7 +48,6 @@ const WelcomeContainer = styled.div`
 
 const WelcomeCardContainer = styled.div`
     width: 100%;
-    height: 400px;
     display: flex;
     justify-content: center;
     position: absolute;
@@ -57,21 +56,30 @@ const WelcomeCardContainer = styled.div`
         top: 300px;
     }
     @media screen and (max-width: 768px) {
-        height: 300px;
-        top: 340px;
+        top: 200px;
     }
     @media screen and (max-width: 540px) {
-        width: 260px;
-        height: 206px;
-        top: 300px;
+        top: 160px;
     }
 `
 
 const WelcomeCardWrapper = styled.div`
     display: flex;
-    height: 100%;
+    height: 400px;
     @media screen and (max-width: 1160px) {
         flex-direction: column-reverse;
+        width: 450px;
+    }
+    @media screen and (max-width: 768px) {
+        width: 370px;
+    }
+
+    @media screen and (max-width: 540px) {
+        width: 320px;
+    }
+
+    @media screen and (max-width: 450px) {
+        width: 250px;
     }
 `
 
@@ -117,21 +125,18 @@ const KingFlokiVideo = styled.video`
 
 const WelcomeCardContent = styled.div`
     width: 502px;
-    height: 100%;
     background: #2B0707 0% 0% no-repeat padding-box;
-    @media screen and (max-width: 768px) {
-        width: 376.5px;
-        height: 470px;
-    }
-    @media screen and (max-width: 540px) {
-        width: 260px;
-        height: 370px;
+    @media screen and (max-width: 1160px) {
+        width: 100%;
     }
 `
 
 const WelcomeCardContentWrapper = styled.div`
     padding: 50px;
     @media screen and (max-width: 540px) {
+        padding: 35px;
+    }
+    @media screen and (max-width: 450px) {
         padding: 25px;
     }
 `
@@ -142,7 +147,7 @@ const PrimaryTitle = styled.div`
     @media screen and (max-width: 768px) {
         font-size: 24px;
     }
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width: 450px) {
         width: 150px;
     }
 `
@@ -155,9 +160,6 @@ const SecondaryTitle = styled.div`
     @media screen and (max-width: 768px) {
         font-size: 12px;
     }
-    @media screen and (max-width: 540px) {
-        font-size: 11px;
-    }
 `
 
 const ContentText = styled.div`
@@ -165,8 +167,5 @@ const ContentText = styled.div`
     padding-top: 10px;
     @media screen and (max-width: 768px) {
         font-size: 12px;
-    }
-    @media screen and (max-width: 540px) {
-        font-size: 11px;
     }
 `
