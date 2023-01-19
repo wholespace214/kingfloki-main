@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import { Logo } from 'src/config/image';
+import { useNavigate } from 'react-router-dom';
 
 interface ModalProps {
   isState: boolean;
@@ -49,14 +50,15 @@ const ModalContainer = ({ isShow, children }: ModalContainerProps) => {
 };
 
 const SideBar = ({ setState }: SidebarProps) => {
+  const navigate = useNavigate();
   return (
     <SideBarContainer>
       <SideBarAction>
-        <Img src={Logo} alt="kingpass-logo" />
+        <Img onClick={() => {navigate("/"); setState(false) }} src={Logo} alt="kingpass-logo" />
         <CloseButton setState={setState} />
       </SideBarAction>
       <SideBarContent>
-        <SidebarItem>Wearables</SidebarItem>
+        <SidebarItem onClick={() => {navigate('/wearable'); setState(false)}}>Wearables</SidebarItem>
         <SidebarItem>Evolve</SidebarItem>
         <SidebarItem>King Pass</SidebarItem>
         <SidebarItem>King</SidebarItem>
