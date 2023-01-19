@@ -5,22 +5,22 @@ import MediumIcon from '../assets/svg/iconboxmedium.svg';
 import TelegramIcon from '../assets/svg/iconboxtg.svg';
 import TwitterIcon from '../assets/svg/iconboxtwitter.svg';
 import YoutubeIcon from '../assets/svg/iconboxyt.svg';
-import WearableBg from '../assets/png/header-bg.png'
-import KingFloki3D from '../assets/png/kingfloki3D.png'
+import WearableBg from '../assets/png/landing/header-bg.png'
+import KingFloki3D from '../assets/png/landing/kingfloki3D.png'
 import NftGamesSvg from '../assets/svg/nft-games.svg'
 import EthereumSvg from '../assets/svg/ethereum.svg'
-import CharactersPng from '../assets/png/characters.png'
-import FloatingCard from '../assets/png/floating-cards.png'
-import FloatingCardMobile from '../assets/png/floating-cards-mobile.png'
+import CharactersPng from '../assets/png/landing/characters.png'
+import FloatingCard from '../assets/png/landing/floating-cards.png'
+import FloatingCardMobile from '../assets/png/landing/floating-cards-mobile.png'
 import MintCardGif from "../assets/gif/mint-gif.gif"
-import NFTCarouselImg from '../assets/png/carousel.png'
+import NFTCarouselImg from '../assets/png/landing/carousel.png'
 import RaityGif from '../assets/gif/raity-gif.gif'
-import CharacterGroup from '../assets/png/groupage.png'
-import GradientRarity from '../assets/png/gradient-rarity.png'
-import TradeOpenseaImg from '../assets/png/trade-on-opensea.png'
-import PotionBox from '../assets/png/potion-box.png'
+import CharacterGroup from '../assets/png/landing/groupage.png'
+import GradientRarity from '../assets/png/landing/gradient-rarity.png'
+import TradeOpenseaImg from '../assets/png/landing/trade-on-opensea.png'
+import PotionBox from '../assets/png/landing/potion-box.png'
 import OpenseaLogo from '../assets/svg/opensea-logo.svg'
-import BgBottom from '../assets/png/bg-bottom.png'
+import BgBottom from '../assets/png/landing/bg-bottom.png'
 import EbmKFVideo1 from '../assets/video/KF-Website-1-vp9-chrome.webm'
 import KFVideo1 from '../assets/video/KF-Website-1.mp4'
 import MobKFVideo1 from '../assets/video/KF-Website-1-MOB.mp4'
@@ -35,4 +35,10 @@ import NavTelegramIcon from "../assets/svg/menu_icon-02.svg"
 import NavDiscordIcon from "../assets/svg/menu_icon-03.svg"
 import NavOpenseaIcon from "../assets/svg/menu_icon-04.svg"
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon, EbmKFVideo1, EbmMobKFVideo1, EbmKFVideo3 }
+// Wearable
+import DeskIslandPng from '../assets/png/wearable/island.png'
+import MobIslandPng from '../assets/png/wearable/mobile/island_MOBILE.png'
+import DeskKingFlokiVideo from '../assets/video/kingfloki-video1.mp4'
+import MobKingFlokiVideo from '../assets/video/kingfloki-video1MOB.mp4'
+
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon, EbmKFVideo1, EbmMobKFVideo1, EbmKFVideo3, DeskIslandPng, MobIslandPng, DeskKingFlokiVideo, MobKingFlokiVideo }

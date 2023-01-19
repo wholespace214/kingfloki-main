@@ -1,0 +1,172 @@
+import styled from "styled-components"
+import { DeskIslandPng, DeskKingFlokiVideo, MobIslandPng } from "src/config/image"
+
+export const Welcome = () => {
+    return(
+        <WelcomeContainer>
+            <WelcomeCardContainer>
+                <WelcomeCardWrapper>
+                    <KingFlokiVideo playsInline loop autoPlay muted id="nft-video-desktop">
+                         <source src={DeskKingFlokiVideo} type='video/mp4' id="kingfloki-video-source-desktop" />
+                    </KingFlokiVideo>
+                    <WelcomeCardContent> 
+                        <WelcomeCardContentWrapper>
+                            <PrimaryTitle>What is King Floki?</PrimaryTitle>
+                            <SecondaryTitle>WELCOME TO THE METAVERSE</SecondaryTitle>
+                            <ContentText>
+                                King Floki is a creative metaverse built in Webgl, born to improve people’s accessibility and gaming    experience.<br /><br /> King Floki is made for everyone but to also allow adult users to generate tangible wealth through the game experience.<br /><br /> Through our tradable wearables, competition winning, land monetisation and constant playing, our users are able to experience a fully solvent ecosystem where they are able to generate and manage their own prosperity.
+                            </ContentText>
+                        </WelcomeCardContentWrapper>
+                    </WelcomeCardContent>
+                </WelcomeCardWrapper>
+            </WelcomeCardContainer>
+            <WelcomeLabel>CREATE. BUILD. INTERACT. OWN. TRADE.</WelcomeLabel>
+            <WelcomeImage alt="welcome-image" />
+        </WelcomeContainer>
+    )
+}
+
+const WelcomeContainer = styled.div`
+    background-color: #6AD3FE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 948px;
+    position: relative;
+    z-index: 1;
+    @media screen and (max-width: 1160px) {
+        height: 1500px;
+    }
+    @media screen and (max-width: 768px) {
+        height: 1200px;
+    }
+    @media screen and (max-width: 540px) {
+        height: 960px;
+    }
+`
+
+const WelcomeCardContainer = styled.div`
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -90px;
+    @media screen and (max-width: 1160px) {
+        top: 300px;
+    }
+    @media screen and (max-width: 768px) {
+        height: 300px;
+        top: 340px;
+    }
+    @media screen and (max-width: 540px) {
+        width: 260px;
+        height: 206px;
+        top: 300px;
+    }
+`
+
+const WelcomeCardWrapper = styled.div`
+    display: flex;
+    height: 100%;
+    @media screen and (max-width: 1160px) {
+        flex-direction: column-reverse;
+    }
+`
+
+const WelcomeLabel = styled.div`
+    font-size: 36px;
+    font-family: 'gotham-bold';
+    text-transform: uppercase;
+    @media screen and (max-width: 1160px) {
+        padding-top: 20rem;
+    }
+    @media screen and (max-width: 960px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 20px;
+        padding-top: 30rem;
+    }
+    @media screen and (max-width: 540px) {
+        padding-top: 20rem;
+        font-size: 16px;
+        width: 240px;
+        text-align: center;
+    }
+`
+
+const WelcomeImage = styled.img`
+    content: url(${DeskIslandPng});
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    height: 640px;
+    @media screen and (max-width: 768px) {
+        height: 420px;
+    }
+`
+
+const KingFlokiVideo = styled.video`
+    width: auto;
+    height: 100%;
+`
+
+const WelcomeCardContent = styled.div`
+    width: 502px;
+    height: 100%;
+    background: #2B0707 0% 0% no-repeat padding-box;
+    @media screen and (max-width: 768px) {
+        width: 376.5px;
+        height: 470px;
+    }
+    @media screen and (max-width: 540px) {
+        width: 260px;
+        height: 370px;
+    }
+`
+
+const WelcomeCardContentWrapper = styled.div`
+    padding: 50px;
+    @media screen and (max-width: 540px) {
+        padding: 25px;
+    }
+`
+
+const PrimaryTitle = styled.div`
+    font-size: 35px;
+    font-family: 'gotham-bold';
+    @media screen and (max-width: 768px) {
+        font-size: 24px;
+    }
+    @media screen and (max-width: 540px) {
+        width: 150px;
+    }
+`
+
+const SecondaryTitle = styled.div`
+    font-size: 14px;
+    font-family: 'gotham-bold';
+    color: #F48E37;
+    padding-top: 15px;
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media screen and (max-width: 540px) {
+        font-size: 11px;
+    }
+`
+
+const ContentText = styled.div`
+    font-size: 14px;
+    padding-top: 10px;
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
+    @media screen and (max-width: 540px) {
+        font-size: 11px;
+    }
+`

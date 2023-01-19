@@ -1,6 +1,7 @@
 export const PUBLIC_ROUTES = {
   default: '/',
-  home: '/home'
+  home: '/home',
+  wearable: '/wearable'
 };
 
 export const PRIVATE_ROUTES = {};

@@ -7,6 +7,7 @@ import { Provider } from './Provider';
 import { Layout } from './layouts/layout';
 
 import { Home } from './pages/home';
+import { Wearable } from './pages/wearable';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path={PUBLIC_ROUTES.default} element={<Home />} />
               <Route path={PUBLIC_ROUTES.home} element={<Home />} />
+              <Route path={PUBLIC_ROUTES.wearable} element={<Wearable />} />
             </Routes>
           </Layout>
         </Provider>

@@ -19,7 +19,7 @@ export const Header = () => {
         </NavSection>
         <HeaderAction>
           <HeaderLinks>
-              <NavLink>Wearables</NavLink>
+              <NavLink onClick={() => navigate('/wearable')}>Wearables</NavLink>
               <NavLink>Evolve</NavLink>
               <NavLink>King pass</NavLink>
               <NavLink>News</NavLink>
