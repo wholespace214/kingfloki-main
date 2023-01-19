@@ -9,6 +9,7 @@ const CardData = [
         titleImg: OpenseaLogo,
         title: "Trade on Opensea",
         content: "Trade and purchase wearable collection on Opensea. Find specific wearable NFTs that you are looking for listed by other users.",
+        btnName: "Coming Soon",
         link: ""
     },
     {
@@ -16,6 +17,7 @@ const CardData = [
         img: PotionBox,
         title: "Evolve your NFTs",
         content: "Once you have gathered enough common wearables that you are not interested in, you will be able to fuse them into rarer wearables.",
+        btnName: "Coming Soon",
         link: ""
     }
 ]
@@ -28,7 +30,7 @@ export const GiftCards = () => {
             <GiftCardsWrapper>
                 {
                     CardData.map((item) => (
-                        <GiftCard img={item.img} titleImg={item.titleImg} title={item.title} content={item.content} link={item.link} key={item.id} />
+                        <GiftCard img={item.img} titleImg={item.titleImg} title={item.title} content={item.content} link={item.link} btnName={item.btnName} key={item.id} />
                     ))
                 }
             </GiftCardsWrapper>

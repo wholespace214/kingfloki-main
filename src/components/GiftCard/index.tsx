@@ -5,11 +5,12 @@ interface GiftCardProps {
     titleImg?: string;
     title: string;
     content: string;
+    btnName: string;
     link: string;
 }
 
 export const GiftCard = (props: GiftCardProps) => {
-    const { img, titleImg, title, content, link } = props;
+    const { img, titleImg, title, content, btnName, link } = props;
     return(
         <GiftCardContainer>
             <GiftCardImg src={img} alt="gift-card-img" />
@@ -24,7 +25,7 @@ export const GiftCard = (props: GiftCardProps) => {
                 <GiftCardAction>
                     <ALink href={link} rel="noreferror noopener">
                         <ComingSoonButton>
-                            Coming Soon
+                            {btnName}
                         </ComingSoonButton>
                     </ALink>
                 </GiftCardAction>
