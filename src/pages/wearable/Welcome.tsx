@@ -6,9 +6,9 @@ export const Welcome = () => {
         <WelcomeContainer>
             <WelcomeCardContainer>
                 <WelcomeCardWrapper>
-                    <KingFlokiVideo playsInline loop autoPlay muted id="nft-video-desktop">
+                    <video playsInline loop autoPlay muted id="nft-video-desktop">
                          <source src={DeskKingFlokiVideo} type='video/mp4' id="kingfloki-video-source-desktop" />
-                    </KingFlokiVideo>
+                    </video>
                     <WelcomeCardContent> 
                         <WelcomeCardContentWrapper>
                             <PrimaryTitle>What is King Floki?</PrimaryTitle>
@@ -112,11 +112,6 @@ const WelcomeImage = styled.img`
     @media screen and (max-width: 768px) {
         height: 420px;
     }
-`
-
-const KingFlokiVideo = styled.video`
-    width: auto;
-    height: 100%;
 `
 
 const WelcomeCardContent = styled.div`
