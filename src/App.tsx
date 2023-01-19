@@ -16,9 +16,8 @@ function App() {
         <Provider>
           <Layout>
             <Routes>
-              <Route path={PUBLIC_ROUTES.default} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.home} element={<Home />} />
-              <Route path={PUBLIC_ROUTES.wearable} element={<Wearable />} />
+              <Route path={PUBLIC_ROUTES.default} element={<Wearable />} />
+              <Route path={PUBLIC_ROUTES.wearable} element={<Home />} />
             </Routes>
           </Layout>
         </Provider>

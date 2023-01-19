@@ -68,7 +68,11 @@ const GiftCardImg = styled.img`
 
 const GiftCardContent = styled.div`
     padding: 32px 42px;
+    height: 161px;
     background: #2B0707 0% 0% no-repeat padding-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     @media screen and (max-width: 450px) {
         padding: 18px 30px;
     }

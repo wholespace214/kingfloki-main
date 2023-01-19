@@ -6,17 +6,17 @@ const CardData = [
     {
         id: 1,
         img: KFRunVisual,
-        title: "Trade on Opensea",
-        content: "Trade and purchase wearable collection on Opensea. Find specific wearable NFTs that you are looking for listed by other users.",
-        btnName: "Coming Soon",
+        title: "Play to earn",
+        content: "As you dive into King Floki, you can find new ways to generate wealth and own liquidity.",
+        btnName: "Run Now",
         link: ""
     },
     {
         id: 2,
         img: KFCompetition,
-        title: "Evolve your NFTs",
-        content: "Once you have gathered enough common wearables that you are not interested in, you will be able to fuse them into rarer wearables.",
-        btnName: "Coming Soon",
+        title: "King competitions",
+        content: "Compete and win. Online weekly competitions against other KF users to win cash prizes and unique in game NFTs.",
+        btnName: "Compete Now",
         link: ""
     }
 ]
