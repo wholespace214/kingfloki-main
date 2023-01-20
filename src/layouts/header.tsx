@@ -4,6 +4,7 @@ import { NavDiscordIcon, Logo, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon }
 import { useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import { Modal } from 'src/components/Modal';
+import { CustomConnectButton } from 'src/components/Button';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -32,9 +33,7 @@ export const Header = () => {
             <ExternalLink href='' rel='noopenner noreferror'><img src={NavDiscordIcon} alt="discord-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
             <ExternalLink href='' rel='noopenner noreferror'><img src={NavOpenseaIcon} alt="opeansea-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
           </ExternalLinks>
-          <ConnectWallet>
-            Connect
-          </ConnectWallet>
+          <CustomConnectButton />
         </HeaderAction>
       </HeaderContainer>
       <Modal isState={isOpen} setState={setOpen} />
