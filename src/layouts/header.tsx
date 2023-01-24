@@ -94,24 +94,6 @@ const ExternalLink = styled.a`
   cursor: pointer;
 `
 
-const ConnectWallet = styled.div`
-  width: 170px;
-  height: 100%;
-  background-color: #F48E37;
-  font-size: 14px;
-  font-family: 'gotham-bold';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  letter-spacing: -0.12px;
-  cursor: pointer;
-   @media screen and (max-width: 640px) {
-    width: 90px;
-    font-size: 10px;
-  }
-`
-
 const NavLink = styled.div`
   font-size: 14px;
   text-transform: uppercase;

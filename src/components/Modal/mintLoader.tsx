@@ -1,25 +1,23 @@
 import styled, { keyframes } from "styled-components"
 import { LoaderVideo, EbmLoaderVideo } from "src/config/image"
-import { useStore } from "src/context/storecontext"
-import { useEffect } from "react"
 
 interface MintLoaderProps {
-    value: number
+    value: number,
+    setValue: (value: number) => void
 }
 
 export const MintLoader = (props: MintLoaderProps) => {
-    const { setMintStatus } = useStore();
-    window.onbeforeunload = (event) => {
-        const e = event || window.event;
-        // Cancel the event
-        e.preventDefault();
-        if (e) {
-            e.returnValue = ''; // Legacy method for cross browser support
-            setMintStatus(0);
-        }
-        return ''; // Legacy method for cross browser support
-    };
-    const { value } = props;
+    const { value, setValue } = props;
+    // window.onbeforeunload = (event) => {
+    //     const e = event || window.event;
+    //     // Cancel the event
+    //     e.preventDefault();
+    //     if (e) {
+    //         e.returnValue = ''; // Legacy method for cross browser support
+    //         setMintStatus(0);
+    //     }
+    //     return ''; // Legacy method for cross browser support
+    // };
     let randomLabel = "";
     let statusLabel = "";
     switch(value) {
@@ -71,7 +69,7 @@ export const MintLoader = (props: MintLoaderProps) => {
                 </StatusLabel>
                 {
                     value ===  5 &&
-                    <CloseButton onClick={() => setMintStatus(0)}>Close</CloseButton>
+                    <CloseButton onClick={() => setValue(0)}>Close</CloseButton>
                 }
             </MintLoaderWrapper>
         </MintLoaderContainer>

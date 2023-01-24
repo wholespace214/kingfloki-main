@@ -4,11 +4,10 @@ import { toast } from 'react-toastify'
 import { Spinner } from 'src/components/Spinner'
 import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg, NFTCarouselImg } from "src/config/image"
 import { useWeb3Store } from 'src/context/web3context'
-import { getNftsFromApi, NFTMintCostInEth, requestMintRandomNft } from 'src/contracts'
+import { getFreebiesCount, getNftsFromApi, NFTMintCostInEth, requestMintRandomNft } from 'src/contracts'
 import { useAccount } from 'wagmi'
 import styled from "styled-components"
 import { MintLoader } from 'src/components/Modal/mintLoader'
-import { useStore } from 'src/context/storecontext'
 import axios from 'axios'
 
 export const MingPage = () => {
@@ -16,8 +15,9 @@ export const MingPage = () => {
     const [isLoad, setLoad] = useState(false);
     const { isInitialized } = useWeb3Store();
     const { isConnected } = useAccount();
-    const { mintStatus, setMintStatus } = useStore();
+    const [mintStatus, setMintStatus ] = useState(0);
     const [hasPending, setHasPending] = useState(false);
+    const [freebies, setFreebies] = useState(0);
     const { address } = useAccount();
     const handleClick = (symbol: string) => {
         let num = mintNum;
@@ -44,6 +44,9 @@ export const MingPage = () => {
                 if(awaiting_mints !== 0) {
                     setHasPending(true);
                 }
+
+                const _freebies = await getFreebiesCount();
+                setFreebies(_freebies);
             })();
         }
     }, [isInitialized])
@@ -52,9 +55,9 @@ export const MingPage = () => {
         console.log('mintStatus: ', mintStatus);
     }, [mintStatus])
 
-     const handleStatus = async (value: number) => {
-            setMintStatus(value);
-            console.log(value);
+    const handleStatus = async (value: number) => {
+        setMintStatus(value);
+        console.log(value);
     }
 
     async function _getNftsFromApi() {
@@ -142,17 +145,17 @@ export const MingPage = () => {
                                     <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
                                     <EtherValue>{isConnected ? (randomMinintCost === 0 ? '-' : randomMinintCost ): '-' } ETH</EtherValue>
                                 </EtherValueContainer>
-                                {/* <FreebiesContainer>
+                                <FreebiesContainer>
                                     <FreebiesLabel>Freebies</FreebiesLabel>
-                                    <FreebiesValue>1</FreebiesValue>
-                                </FreebiesContainer> */}
+                                    <FreebiesValue>{freebies}</FreebiesValue>
+                                </FreebiesContainer>
                             </MintCardFooter>
                         </MintCardContentWraper>
                     </MintCardContent>
                 </MintCard>
             </MingPageContainer>
             <NFTCarousel />
-            <MintLoader value={mintStatus} />
+            <MintLoader value={mintStatus} setValue={setMintStatus} />
         </>
     )
 }
