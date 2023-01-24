@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { Spinner } from 'src/components/Spinner'
 import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg, NFTCarouselImg } from "src/config/image"
 import { useWeb3Store } from 'src/context/web3context'
-import { RandomMintCostEth } from 'src/contracts'
+import { getNftsFromApi, NFTMintCostInEth, requestMintRandomNft } from 'src/contracts'
 import { useAccount } from 'wagmi'
 import styled from "styled-components"
 
@@ -27,12 +27,29 @@ export const MingPage = () => {
     useEffect(() => {
         if(isInitialized) {
             (async () => {
-               const cost = await RandomMintCostEth();
+               const cost = await NFTMintCostInEth();
                console.log({cost});
                setRandomMinintCost(cost);
             })();
         }
     }, [isInitialized])
+
+    async function _getNftsFromApi() {
+        const isReq = await getNftsFromApi()
+        if (isReq) {
+            /* eslint-disable no-console */
+            console.log("Got them!!!", isReq)
+        }
+    }
+    async function testClick() {
+        const isReq = await requestMintRandomNft()
+        if (isReq) {
+            /* eslint-disable no-console */
+            console.log("requested!!")
+            await _getNftsFromApi()
+        }
+    }
+
     const handleContractFunction = (func:() => Promise<void>) => {
         // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
         const promise = new Promise(async function(resolve, reject) {
@@ -87,17 +104,21 @@ export const MingPage = () => {
                                     <MintInput type="number" value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
                                     <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
                                 </MintInputBox>
-                                <MintButton>{isLoad? <Spinner /> : "Mint Now"}</MintButton>
+                                {/* <MintButton>{isLoad ? <Spinner /> : "Mint Now"}</MintButton> */}
+                                <MintButtonBox>
+                                    <MintButton disabled={isLoad} onClick={() => {handleContractFunction(async() => await _getNftsFromApi()); console.log('_getNftsFromApi')}}>{isLoad ? <Spinner /> : "Get Pending NFTs"}</MintButton>
+                                    <MintButton disabled={isLoad} onClick={() => {handleContractFunction(async() => await testClick()); console.log('textClick')}}>{isLoad ? <Spinner /> : "Mint Now"}</MintButton>
+                                </MintButtonBox>
                             </MintCardAction>
                             <MintCardFooter>
                                 <EtherValueContainer>
                                     <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
                                     <EtherValue>{isConnected ? (randomMinintCost === 0 ? '-' : randomMinintCost ): '-' } ETH</EtherValue>
                                 </EtherValueContainer>
-                                <FreebiesContainer>
+                                {/* <FreebiesContainer>
                                     <FreebiesLabel>Freebies</FreebiesLabel>
                                     <FreebiesValue>1</FreebiesValue>
-                                </FreebiesContainer>
+                                </FreebiesContainer> */}
                             </MintCardFooter>
                         </MintCardContentWraper>
                     </MintCardContent>
@@ -286,15 +307,16 @@ const MintInput = styled.input`
     }
 `
 
-const MintButton = styled.div`
+const MintButton = styled.button`
     background: #F48E37 0% 0% no-repeat padding-box;
     height: 56px;
+    border: none;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 14px;
     font-family: 'gotham-bold';
     color: #FFFFFF;
     cursor: pointer;
@@ -394,4 +416,9 @@ const NFTCarousel = styled.div`
     @media screen and (max-width: 450px) {
         animation: ani 15000s linear infinite;
     }
+`
+
+const MintButtonBox = styled.div`
+    display: flex;
+    gap: 8px;
 `
