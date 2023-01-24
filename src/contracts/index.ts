@@ -51,7 +51,7 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     const awaiting_mints = api_call.data.data.length
     if (awaiting_mints === 0) {
         console.warn("no pending mints")
-        return
+        return false;
     }
     const NftToMint = []
     for (let i = 0; i < awaiting_mints; i++) {

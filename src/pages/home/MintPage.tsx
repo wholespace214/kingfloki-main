@@ -9,18 +9,21 @@ import { useAccount } from 'wagmi'
 import styled from "styled-components"
 import { MintLoader } from 'src/components/Modal/mintLoader'
 import { useStore } from 'src/context/storecontext'
+import axios from 'axios'
 
 export const MingPage = () => {
-    const [mintNum, setMintNum] = useState(0);
+    const [mintNum, setMintNum] = useState(1);
     const [isLoad, setLoad] = useState(false);
     const { isInitialized } = useWeb3Store();
     const { isConnected } = useAccount();
     const { mintStatus, setMintStatus } = useStore();
+    const [hasPending, setHasPending] = useState(false);
+    const { address } = useAccount();
     const handleClick = (symbol: string) => {
         let num = mintNum;
         if(symbol === 'minus') {
             num--;
-            if(mintNum > 0) setMintNum(num);
+            if(mintNum > 1) setMintNum(num);
         } else {
             num++;
             setMintNum(num);
@@ -33,6 +36,14 @@ export const MingPage = () => {
                const cost = await NFTMintCostInEth();
                console.log({cost});
                setRandomMinintCost(cost);
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
+                /* eslint-disable no-console */
+                console.log("we?", api_call)
+                const awaiting_mints = api_call.data.data.length;
+                if(awaiting_mints !== 0) {
+                    setHasPending(true);
+                }
             })();
         }
     }, [isInitialized])
@@ -54,7 +65,6 @@ export const MingPage = () => {
         }
     }
     async function testClick() {
-       
         const isReq = await requestMintRandomNft(handleStatus);
         if (isReq) {
             /* eslint-disable no-console */
@@ -104,7 +114,7 @@ export const MingPage = () => {
                     <MintCardImg>
                         <img src={MintCardGif} alt="mincard-gif" style={{ width: '100%', height: '100%' }} />
                     </MintCardImg>
-                    <MintCardContent>
+                    <MintCardContent hasPending={hasPending}>
                         <MintCardContentWraper>
                             <MintCardPrimaryLabel>
                                 Mint your
@@ -115,12 +125,15 @@ export const MingPage = () => {
                             <MintCardAction>
                                 <MintInputBox>
                                     <OperationBtn onClick={() => handleClick("minus")}>-</OperationBtn>
-                                    <MintInput type="number" value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
+                                    <MintInput type="number" min={1} value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
                                     <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
                                 </MintInputBox>
                                 {/* <MintButton>{isLoad ? <Spinner /> : "Mint Now"}</MintButton> */}
                                 <MintButtonBox>
-                                    <MintButton disabled={isLoad} onClick={() => {handleContractFunction(async() => await _getNftsFromApi()); console.log('_getNftsFromApi')}}>{isLoad ? <Spinner /> : "Get Pending NFTs"}</MintButton>
+                                    {
+                                        hasPending &&
+                                        <MintButton disabled={isLoad} onClick={() => {handleContractFunction(async() => await _getNftsFromApi()); console.log('_getNftsFromApi')}}>{isLoad ? <Spinner /> : "Get Pending NFTs"}</MintButton>
+                                    }
                                     <MintButton disabled={isLoad} onClick={() => {handleContractFunction(async() => await testClick()); console.log('textClick')}}>{isLoad ? <Spinner /> : "Mint Now"}</MintButton>
                                 </MintButtonBox>
                             </MintCardAction>
@@ -215,24 +228,27 @@ const MintCardImg = styled.div`
         height: 263px;
     }
 `
+interface CardContentProps {
+    hasPending: boolean
+}
 
-const MintCardContent = styled.div`
+const MintCardContent = styled.div<CardContentProps>`
     width: auto;
-    height: 460px;
+    height: ${({ hasPending }) => hasPending ? '460px' : '420px' };
     background-color: #2B0707;
     display: flex;
     justify-content: center;
     @media screen and (max-width: 960px) {
         width: 310px;
-        height: 400px;
+        height: ${({ hasPending }) => hasPending ? '420px' : '380px' };
     }
     @media screen and (max-width: 450px) {
         width: 270px;
-        height: 340px;
+        height: ${({ hasPending }) => hasPending ? '380px' : '340px' };
     }
     @media screen and (max-width: 350px) {
         width: 224px;
-        height: 280px;
+        height: ${({ hasPending }) => hasPending ? '320px' : '280px' };
     }
 `
 
