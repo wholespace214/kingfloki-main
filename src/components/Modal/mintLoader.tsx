@@ -24,12 +24,12 @@ export const MintLoader = (props: MintLoaderProps) => {
     let statusLabel = "";
     switch(value) {
         case 1:
-            randomLabel = "Start the randomizing";
+            randomLabel = "Randomizing";
             statusLabel = "Confirm your Metamask transaction in order to start generating your NFT";
             break;
         case 2:
             randomLabel = "Generating your NFT";
-            statusLabel = "Hang on a moment";
+            statusLabel = "It will take around 20 seconds";
             break;
         case 3:
             randomLabel = "Your NFT is now ready!";
@@ -37,7 +37,7 @@ export const MintLoader = (props: MintLoaderProps) => {
             break;
         case 4:
             randomLabel = "Minting in progress";
-            statusLabel = "Hang on a moment";
+            statusLabel = "It will take around 20 seconds";
             break;
         case 5:
             randomLabel = "Congratulations!";
@@ -60,6 +60,12 @@ export const MintLoader = (props: MintLoaderProps) => {
                     <source src={EbmLoaderVideo} type="video/webm"></source>
                     Your browser does not support the video tag.
                 </LoaderGif>
+                {
+                    (value === 2 || value === 4) &&
+                    <HangonLabel>
+                        Hang on a moment
+                    </HangonLabel>
+                }
                 <StatusLabel>
                     {statusLabel}
                 </StatusLabel>
@@ -127,7 +133,7 @@ const LoaderGif = styled.video`
 
 const StatusLabel = styled.div`
     font-size: 16px;
-    padding: 38px;
+    padding: 12px;
     width: 390px;
     text-align: center;
     @media screen and (max-width: 540px) {
@@ -137,11 +143,11 @@ const StatusLabel = styled.div`
 `
 
 const CloseButton = styled.div`
+    margin-top: 30px;
     background: #F48E37 0% 0% no-repeat padding-box;
-    height: 45px;
+    height: 40px;
     border: none;
-    width: 220px;
-    border-radius: 50px;
+    width: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,4 +157,11 @@ const CloseButton = styled.div`
     color: #FFFFFF;
     cursor: pointer;
     user-select: none;
+`
+
+const HangonLabel = styled.div`
+    font-size: 16px;
+    font-family: 'gotham-bold';
+    color: #F48E37;
+    padding-top: 24px;
 `
