@@ -28,14 +28,19 @@ export const NFTMintCostInEth = async () => {
     const _tx = parseInt(tx);
     return _tx;
 }
-export const requestMintRandomNft = async () => {
+
+export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>) => {
     const group_id = 0
     const ownerAddress = await signer.getAddress();
     const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, 1, group_id, { value: 1 });
+    console.log("handleStatus", 2);
+    handleStatus(2)
     await tx.wait()
+    handleStatus(3)
+    console.log("handleStatus", 3);
     return true;
 }
-export const getNftsFromApi = async () => {
+export const getNftsFromApi = async (handleStatus: (value: number) => Promise<void>) => {
     const ownerAddress = await signer.getAddress();
     /* eslint-disable no-console */
     console.log("owner?", ownerAddress)
@@ -57,7 +62,11 @@ export const getNftsFromApi = async () => {
     }
     // mint nft with ticket
     const tx = await NFTWithSigner.mintRandomNfts(NftToMint)
+    console.log("handleStatus", 4);
+    handleStatus(4);
     await tx.wait()
+    console.log("handleStatus", 5);
+    handleStatus(5);
     /* eslint-disable no-console */
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.log(`tokens ${NftToMint} minted`)

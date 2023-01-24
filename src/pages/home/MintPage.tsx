@@ -7,12 +7,15 @@ import { useWeb3Store } from 'src/context/web3context'
 import { getNftsFromApi, NFTMintCostInEth, requestMintRandomNft } from 'src/contracts'
 import { useAccount } from 'wagmi'
 import styled from "styled-components"
+import { MintLoader } from 'src/components/Modal/mintLoader'
+import { useStore } from 'src/context/storecontext'
 
 export const MingPage = () => {
     const [mintNum, setMintNum] = useState(0);
     const [isLoad, setLoad] = useState(false);
     const { isInitialized } = useWeb3Store();
     const { isConnected } = useAccount();
+    const { mintStatus, setMintStatus } = useStore();
     const handleClick = (symbol: string) => {
         let num = mintNum;
         if(symbol === 'minus') {
@@ -34,15 +37,25 @@ export const MingPage = () => {
         }
     }, [isInitialized])
 
+    useEffect(() => {
+        console.log('mintStatus: ', mintStatus);
+    }, [mintStatus])
+
+     const handleStatus = async (value: number) => {
+            setMintStatus(value);
+            console.log(value);
+    }
+
     async function _getNftsFromApi() {
-        const isReq = await getNftsFromApi()
+        const isReq = await getNftsFromApi(handleStatus)
         if (isReq) {
             /* eslint-disable no-console */
             console.log("Got them!!!", isReq)
         }
     }
     async function testClick() {
-        const isReq = await requestMintRandomNft()
+       
+        const isReq = await requestMintRandomNft(handleStatus);
         if (isReq) {
             /* eslint-disable no-console */
             console.log("requested!!")
@@ -51,6 +64,7 @@ export const MingPage = () => {
     }
 
     const handleContractFunction = (func:() => Promise<void>) => {
+        setMintStatus(1);
         // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
         const promise = new Promise(async function(resolve, reject) {
         try {
@@ -59,13 +73,13 @@ export const MingPage = () => {
             resolve("");
         } catch (err) {
             reject(err)
+            setMintStatus(0);
         }
         });
-        promise.then(
-        (result) => {
+        promise.then((result) => {
             console.log({ result })
             // toast.success("Congratulations, you have claimed your Kingpass");
-            toast.success('successMsg');
+            // toast.success('successMsg');
             setLoad(false);
             
         }
@@ -125,6 +139,7 @@ export const MingPage = () => {
                 </MintCard>
             </MingPageContainer>
             <NFTCarousel />
+            <MintLoader value={mintStatus} />
         </>
     )
 }
