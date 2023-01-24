@@ -7,7 +7,7 @@ import './index.css';
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { metaMaskWallet, trustWallet } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { bscTestnet } from 'wagmi/chains';
+import { goerli } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 window.Buffer = require('buffer').Buffer;
 
 const { chains, provider } = configureChains(
-  [bscTestnet],
+  [goerli],
   [alchemyProvider({ apiKey: '6mDnh0_FqrDQzdcOCI_O5NkDs70x4VYp' }), publicProvider()]
 );
 

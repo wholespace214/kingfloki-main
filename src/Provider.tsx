@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import { COLORS, TEXT_SIZE } from './config/config';
+import { Web3Provider } from './context/web3context';
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -11,5 +12,10 @@ const theme = {
 };
 
 export const Provider = ({ children }: ProviderProps) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+  <ThemeProvider theme={theme}>
+    <Web3Provider>
+      {children}
+    </Web3Provider>
+  </ThemeProvider>);
 };

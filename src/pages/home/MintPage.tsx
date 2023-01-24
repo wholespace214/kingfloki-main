@@ -1,9 +1,18 @@
-import { useState } from 'react'
+/* eslint-disable no-console */
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { Spinner } from 'src/components/Spinner'
 import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg, NFTCarouselImg } from "src/config/image"
+import { useWeb3Store } from 'src/context/web3context'
+import { RandomMintCostEth } from 'src/contracts'
+import { useAccount } from 'wagmi'
 import styled from "styled-components"
 
 export const MingPage = () => {
     const [mintNum, setMintNum] = useState(0);
+    const [isLoad, setLoad] = useState(false);
+    const { isInitialized } = useWeb3Store();
+    const { isConnected } = useAccount();
     const handleClick = (symbol: string) => {
         let num = mintNum;
         if(symbol === 'minus') {
@@ -13,6 +22,47 @@ export const MingPage = () => {
             num++;
             setMintNum(num);
         }
+    }
+    const [randomMinintCost, setRandomMinintCost] = useState(0);
+    useEffect(() => {
+        if(isInitialized) {
+            (async () => {
+               const cost = await RandomMintCostEth();
+               console.log({cost});
+               setRandomMinintCost(cost);
+            })();
+        }
+    }, [isInitialized])
+    const handleContractFunction = (func:() => Promise<void>) => {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
+        const promise = new Promise(async function(resolve, reject) {
+        try {
+            setLoad(true);
+            await func();
+            resolve("");
+        } catch (err) {
+            reject(err)
+        }
+        });
+        promise.then(
+        (result) => {
+            console.log({ result })
+            // toast.success("Congratulations, you have claimed your Kingpass");
+            toast.success('successMsg');
+            setLoad(false);
+            
+        }
+        ).catch(
+        (err) => {
+            console.log({ err });
+            // toast.error(`you need to wait at least 24 hours to withdraw your $KING`, err); 
+            const revertData = err.reason;
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            toast.error(`Transaction failed: ${revertData}`)
+            // errMsg !== "" ? toast.error(errMsg, err) :  
+            setLoad(false);
+        }
+        )
     }
     return(
         <>
@@ -37,12 +87,12 @@ export const MingPage = () => {
                                     <MintInput type="number" value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
                                     <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
                                 </MintInputBox>
-                                <MintButton>Mint Now</MintButton>
+                                <MintButton>{isLoad? <Spinner /> : "Mint Now"}</MintButton>
                             </MintCardAction>
                             <MintCardFooter>
                                 <EtherValueContainer>
                                     <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
-                                    <EtherValue>0.03 ETH</EtherValue>
+                                    <EtherValue>{isConnected ? (randomMinintCost === 0 ? '-' : randomMinintCost ): '-' } ETH</EtherValue>
                                 </EtherValueContainer>
                                 <FreebiesContainer>
                                     <FreebiesLabel>Freebies</FreebiesLabel>
