@@ -29,17 +29,31 @@ export const NFTMintCostInEth = async () => {
     return _tx;
 }
 
-export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>) => {
+export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>, quantity: number) => {
     const group_id = 0
     const ownerAddress = await signer.getAddress();
-    const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, 1, group_id, { value: 1 });
-    console.log("handleStatus", 2);
-    handleStatus(2)
-    await tx.wait()
+
+    const freeMintAvailable = await NFTWithSigner.freeMintsAvailable(ownerAddress, group_id);
+    const _freeMintAvailable = parseInt(freeMintAvailable);
+    console.log({ _freeMintAvailable })
+
+    if(_freeMintAvailable !== 0) {
+        const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, quantity);
+        console.log("handleStatus", 2);
+        handleStatus(2)
+        await tx.wait()
+    } else {
+        const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, quantity, group_id, { value: 1 });
+        console.log("handleStatus", 2);
+        handleStatus(2)
+        await tx.wait()
+    }
+
     handleStatus(3)
     console.log("handleStatus", 3);
     return true;
 }
+
 export const getNftsFromApi = async (handleStatus: (value: number) => Promise<void>) => {
     const ownerAddress = await signer.getAddress();
     /* eslint-disable no-console */

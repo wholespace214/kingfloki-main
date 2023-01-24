@@ -65,7 +65,7 @@ export const MingPage = () => {
         }
     }
     async function testClick() {
-        const isReq = await requestMintRandomNft(handleStatus);
+        const isReq = await requestMintRandomNft(handleStatus, mintNum);
         if (isReq) {
             /* eslint-disable no-console */
             console.log("requested!!")
@@ -234,21 +234,21 @@ interface CardContentProps {
 
 const MintCardContent = styled.div<CardContentProps>`
     width: auto;
-    height: ${({ hasPending }) => hasPending ? '460px' : '420px' };
+    height: 460px;
     background-color: #2B0707;
     display: flex;
     justify-content: center;
     @media screen and (max-width: 960px) {
         width: 310px;
-        height: ${({ hasPending }) => hasPending ? '420px' : '380px' };
+        height: ${({ hasPending }) => hasPending ? '380px' : '340px' };
     }
     @media screen and (max-width: 450px) {
         width: 270px;
-        height: ${({ hasPending }) => hasPending ? '380px' : '340px' };
+        height: ${({ hasPending }) => hasPending ? '320px' : '280px' };
     }
     @media screen and (max-width: 350px) {
         width: 224px;
-        height: ${({ hasPending }) => hasPending ? '320px' : '280px' };
+        height: ${({ hasPending }) => hasPending ? '280px' : '240px' };
     }
 `
 
