@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { LoaderVideo, EbmLoaderVideo } from "src/config/image"
 import { useStore } from "src/context/storecontext"
 import { useEffect } from "react"
@@ -159,9 +159,18 @@ const CloseButton = styled.div`
     user-select: none;
 `
 
+function blinkingEffect() {
+  return keyframes`
+    50% {
+      opacity: 0;
+    }
+  `;
+}
+
 const HangonLabel = styled.div`
     font-size: 16px;
     font-family: 'gotham-bold';
     color: #F48E37;
     padding-top: 24px;
+    animation: 1s linear 0s infinite normal none running ${blinkingEffect};
 `
