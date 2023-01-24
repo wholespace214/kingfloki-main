@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { LoaderVideo, EbmLoaderVideo } from "src/config/image"
 import { useStore } from "src/context/storecontext"
+import { useEffect } from "react"
 
 interface MintLoaderProps {
     value: number
@@ -8,6 +9,16 @@ interface MintLoaderProps {
 
 export const MintLoader = (props: MintLoaderProps) => {
     const { setMintStatus } = useStore();
+    window.onbeforeunload = (event) => {
+        const e = event || window.event;
+        // Cancel the event
+        e.preventDefault();
+        if (e) {
+            e.returnValue = ''; // Legacy method for cross browser support
+            setMintStatus(0);
+        }
+        return ''; // Legacy method for cross browser support
+    };
     const { value } = props;
     let randomLabel = "";
     let statusLabel = "";
