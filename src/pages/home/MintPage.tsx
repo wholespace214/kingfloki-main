@@ -209,15 +209,15 @@ const MintCardContent = styled.div`
     justify-content: center;
     @media screen and (max-width: 960px) {
         width: 310px;
-        height: 348px;
+        height: 400px;
     }
     @media screen and (max-width: 450px) {
         width: 270px;
-        height: 300px;
+        height: 340px;
     }
     @media screen and (max-width: 350px) {
         width: 224px;
-        height: 240px;
+        height: 280px;
     }
 `
 
@@ -421,4 +421,7 @@ const NFTCarousel = styled.div`
 const MintButtonBox = styled.div`
     display: flex;
     gap: 8px;
+    @media screen and (max-width: 960px) {
+        flex-direction: column;
+    }
 `
