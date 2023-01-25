@@ -195,11 +195,11 @@ const Button = css`
     width: 140px;
     height: 36px;
   }
-  /* @media screen and (max-width: 390px) {
+  @media screen and (max-width: 390px) {
     width: 92px;
     height: 26px;
     font-size: 6px;
-  } */
+  }
 `;
 
 const PlayVideoButton = styled.div`
@@ -211,10 +211,10 @@ const PlayVideoButton = styled.div`
 const ReactIcon = styled.div`
   width: 25px;
   height: 25px;
-  /* @media screen and (max-width: 390px) {
+  @media screen and (max-width: 390px) {
     width: 14px;
     height: 14px;
-  } */
+  }
 `;
 
 const WelcomeContent = styled.div`
