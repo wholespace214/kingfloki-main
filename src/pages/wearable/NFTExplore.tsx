@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom"
 import { EbmKFVideo4, KFVideo4, OutnowPng, FloadingCard } from "src/config/image"
 import styled from "styled-components"
 
 export const NFTExplore = () => {
+    const navigate = useNavigate();
     return(
         <NFTExploreContainer>
             <NFTExploreContent>
@@ -21,7 +23,7 @@ export const NFTExplore = () => {
                     <TextContent>
                         KF’s first wearable non-fungible tokens (NFTs) collection is a unique and creative stack of designs that are flexibly suited on your metaverse character. Including over 2 million combinations, the NFTs are built to create an exclusive feeling, allowing users to trade them as they raise in exclusivity through the minting course.<br /><br /> Find different rarities, colours, shapes and patterns, allow your creativity to flow and create some of the coolest and most extravagant outfits. <br /><br /> Wear different, look King. 
                     </TextContent>
-                    <ExploreButton>
+                    <ExploreButton onClick={() => navigate('/wearable')}>
                         Explore
                     </ExploreButton>
                 </ContentContainer>

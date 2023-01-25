@@ -8,6 +8,7 @@ import { Layout } from './layouts/layout';
 
 import { Home } from './pages/home';
 import { Wearable } from './pages/wearable';
+import ScrollToTop from './utils/scrollToTop';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Provider>
           <Layout>
+            <ScrollToTop />
             <Routes>
               <Route path={PUBLIC_ROUTES.default} element={<Wearable />} />
               <Route path={PUBLIC_ROUTES.wearable} element={<Home />} />

@@ -16,19 +16,19 @@ export const Footer = () => {
         <FooterLink>Term of use</FooterLink>
       </FooterLinks>
       <SocialLinks>
-        <a href={'https://t.me/KlNGfinance'} rel="noopener noreferrer">
+        <a href={'https://t.me/KlNGfinance'} rel="noopener noreferrer" target={"_blank"}>
           <SocialIcon src={TelegramIcon} alt="social-icon" />
         </a>
-        <a href={'https://twitter.com/kingfinance'} rel="noopener noreferrer">
+        <a href={'https://twitter.com/kingfinance'} rel="noopener noreferrer" target={"_blank"}>
           <SocialIcon src={TwitterIcon} alt="social-icon" />
         </a>
-        <a href={'https://www.youtube.com/@kingfinanceco'} rel="noopener noreferrer">
+        <a href={'https://www.youtube.com/@kingfinanceco'} rel="noopener noreferrer" target={"_blank"}>
           <SocialIcon src={YoutubeIcon} alt="social-icon" />
         </a>
-        <a href={'https://king-finance.gitbook.io/king-whitepaper/'} rel="noopener noreferrer">
+        <a href={'https://king-finance.gitbook.io/king-whitepaper/'} rel="noopener noreferrer" target={"_blank"}>
           <SocialIcon src={GitbookIcon} alt="social-icon" />
         </a>
-        <a href={'https://medium.com/@kingfinance'} rel="noopener noreferrer">
+        <a href={'https://medium.com/@kingfinance'} rel="noopener noreferrer" target={"_blank"}>
           <SocialIcon src={MediumIcon} alt="social-icon" />
         </a>
       </SocialLinks>

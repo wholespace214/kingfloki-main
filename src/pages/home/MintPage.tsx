@@ -9,6 +9,7 @@ import { useAccount } from 'wagmi'
 import styled from "styled-components"
 import { MintLoader } from 'src/components/Modal/mintLoader'
 import axios from 'axios'
+import { ethers } from 'ethers'
 
 export const MingPage = () => {
     const [mintNum, setMintNum] = useState(1);
@@ -35,13 +36,13 @@ export const MingPage = () => {
             setMintNum(num);
         }
     }
-    const [randomMinintCost, setRandomMinintCost] = useState(0);
+    const [randomMinintCost, setRandomMinintCost] = useState('0');
     useEffect(() => {
         if(isInitialized) {
             (async () => {
                const cost = await NFTMintCostInEth();
                console.log({cost});
-               setRandomMinintCost(cost);
+               setRandomMinintCost(ethers.utils.formatEther(cost));
                 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                 const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
                 /* eslint-disable no-console */
@@ -159,7 +160,7 @@ export const MingPage = () => {
                             <MintCardFooter>
                                 <EtherValueContainer>
                                     <EtherIcon src={EthereumSvg} alt='ethereum-icon' />
-                                    <EtherValue>{isConnected ? (randomMinintCost === 0 ? '-' : randomMinintCost ): '-' } ETH</EtherValue>
+                                    <EtherValue>{isConnected ? (randomMinintCost === '0' ? '-' : randomMinintCost ): '-' } ETH</EtherValue>
                                 </EtherValueContainer>
                                 <FreebiesContainer>
                                     <FreebiesLabel>Freebies</FreebiesLabel>

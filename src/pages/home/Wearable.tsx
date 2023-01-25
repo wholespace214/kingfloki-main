@@ -31,12 +31,14 @@ export const Wearable = () => {
               Play Video
             </PlayVideoButton>
            
+          <ALink href="https://discord.gg/gtzFGPacK9" rel='noopenner noreferrer' target={"_blank"}>
             <DiscordButton>
               <ReactIcon>
                 <SiDiscord style={{ width: '100%', height: '100%' }} />
               </ReactIcon>
               Join Discord
             </DiscordButton>
+          </ALink>
           </ButtonGroup>
           <Characters>
             <img src={CharactersPng} alt="character-png" style={{ width: '100%', height: '100%' }} />
@@ -249,4 +251,10 @@ const Characters = styled.div`
      width: 280px;
      bottom: -40px;
     }
+`
+
+const ALink = styled.a`
+    outline: none;
+    text-decoration: none;
+    color: inherit
 `

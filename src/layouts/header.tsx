@@ -21,16 +21,16 @@ export const Header = () => {
         <HeaderAction>
           <HeaderLinks>
               <NavLink onClick={() => navigate('/wearable')}>Wearables</NavLink>
-              <NavLink>Evolve</NavLink>
-              <NavLink>King pass</NavLink>
-              <NavLink>News</NavLink>
-              <NavLink>King</NavLink>
-              <NavLink>Docs</NavLink>
+              {/* <NavLink>Evolve</NavLink> */}
+              <ALink href='https://kingpass.finance/' rel='noopenner noreferror' target={"_blank"} ><NavLink>King pass</NavLink></ALink>
+              <ALink href='https://t.me/kingannouncements' rel='noopenner noreferror' target={"_blank"} ><NavLink>News</NavLink></ALink>
+              <ALink href='https://kingworld.finance/' rel='noopenner noreferror' target={"_blank"} ><NavLink>King</NavLink></ALink>
+              <ALink href='https://king-finance.gitbook.io/king-whitepaper/king-ecosystem/king-floki' rel='noopenner noreferror' target={"_blank"} ><NavLink>Docs</NavLink></ALink>
           </HeaderLinks>
           <ExternalLinks>
-            <ExternalLink href='https://twitter.com/kingfinance' rel='noopenner noreferror'><img src={NavTwitterIcon} alt="twitter-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
-            <ExternalLink href='https://t.me/KlNGfinance' rel='noopenner noreferror'><img src={NavTelegramIcon} alt="telegram-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
-            <ExternalLink href='' rel='noopenner noreferror'><img src={NavDiscordIcon} alt="discord-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
+            <ExternalLink href='https://twitter.com/kingfinance' rel='noopenner noreferror' target={"_blank"} ><img src={NavTwitterIcon} alt="twitter-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
+            <ExternalLink href='https://t.me/KlNGfinance' rel='noopenner noreferror' target={"_blank"} ><img src={NavTelegramIcon} alt="telegram-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
+            <ExternalLink href='https://discord.gg/gtzFGPacK9' rel='noopenner noreferror' target={"_blank"} ><img src={NavDiscordIcon} alt="discord-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
             <ExternalLink href='' rel='noopenner noreferror'><img src={NavOpenseaIcon} alt="opeansea-icon" style={{ width: '100%',  height: '100%' }}/></ExternalLink>
           </ExternalLinks>
           <CustomConnectButton />
@@ -121,4 +121,10 @@ const MobileNavIcon = styled.div`
       width: 24px;
       height: 24px;
   }
+`
+
+const ALink = styled.a`
+    outline: none;
+    text-decoration: none;
+    color: inherit
 `
