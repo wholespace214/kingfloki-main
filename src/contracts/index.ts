@@ -44,9 +44,8 @@ export const requestMintRandomNft = async (handleStatus: (value: number) => Prom
     const ownerAddress = await signer.getAddress();
 
     const freeMintAvailable = await getFreebiesCount();
-
     if(freeMintAvailable !== 0) {
-        const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, group_id);
+        const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, quantity, group_id);
         console.log("handleStatus", 2);
         handleStatus(2)
         await tx.wait()

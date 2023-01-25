@@ -25,7 +25,13 @@ export const MingPage = () => {
             num--;
             if(mintNum > 1) setMintNum(num);
         } else {
-            num++;
+            if(freebies !== 0){
+                if(mintNum < freebies) {
+                    num++;
+                }
+            } else {
+                num++;
+            }
             setMintNum(num);
         }
     }
@@ -68,16 +74,26 @@ export const MingPage = () => {
         }
     }
     async function testClick() {
+        if(freebies > 0) {
+            if(freebies < mintNum) {
+                toast.error("Mints number cannot exceed freebies amount");
+                return;
+            }
+        }
+        setMintStatus(1);
         const isReq = await requestMintRandomNft(handleStatus, mintNum);
         if (isReq) {
             /* eslint-disable no-console */
             console.log("requested!!")
             await _getNftsFromApi()
+            if(freebies > 0) {
+                console.log({ freebies, mintNum });
+                setFreebies(freebies-mintNum);
+            }
         }
     }
 
     const handleContractFunction = (func:() => Promise<void>) => {
-        setMintStatus(1);
         // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
         const promise = new Promise(async function(resolve, reject) {
         try {
@@ -128,7 +144,7 @@ export const MingPage = () => {
                             <MintCardAction>
                                 <MintInputBox>
                                     <OperationBtn onClick={() => handleClick("minus")}>-</OperationBtn>
-                                    <MintInput type="number" min={1} value={mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
+                                    <MintInput type="number" min={1}value={mintNum === 0 ? 1 : mintNum} onChange={(e) => setMintNum(Number(e.target.value))}/>
                                     <OperationBtn onClick={() => handleClick("plus")}>+</OperationBtn>
                                 </MintInputBox>
                                 {/* <MintButton>{isLoad ? <Spinner /> : "Mint Now"}</MintButton> */}
