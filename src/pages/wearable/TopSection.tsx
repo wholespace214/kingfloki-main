@@ -43,6 +43,9 @@ const Video = styled.video`
   @media screen and (max-width: 720px) {
     height: 540px;
   }
+  @media screen and (max-width: 540px) {
+    height: 350px;
+  }
 `;
 
 const TopSectionContent = styled.div`
@@ -53,7 +56,10 @@ const TopSectionContent = styled.div`
   align-items: center;
   margin-top: -200px;
   @media screen and (max-width: 1024px) {
-    gap: 30px;
+    gap: 5.5px;
+  }
+  @media screen and (max-width: 540px) {
+    margin-top: -100px;
   }
 `;
 
@@ -66,6 +72,10 @@ const KingFlokiLogo = styled.img`
 
   @media screen and (max-width: 1024px) {
     width: 200px;
+  }
+
+  @media screen and (max-width: 540px) {
+    width: 120px;
   }
 `;
 
