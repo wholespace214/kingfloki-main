@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import contracts from './contracts.json';
 import { erc20ABI } from 'wagmi'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 let signer: any = null;
 let provider: any = null;
@@ -62,24 +63,39 @@ export const requestMintRandomNft = async (handleStatus: (value: number) => Prom
     return true;
 }
 
+const generateTicketApi = async (ownerAddress: any, handleStatus:(value: number) => Promise<void>,  idx: number) => {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+    const awaiting_mints = api_call.data.data.length;
+    if(awaiting_mints === 0) {
+        if (idx < 4) {
+            console.log("idx: ", idx);
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            setTimeout(async () => {await generateTicketApi(ownerAddress, handleStatus, idx+1)}, 3000);
+        } else {
+            // eslint-disable-next-line @typescript-eslint/no-throw-literal
+            handleStatus(0);
+            toast.error("sorry! something went wrong! ask help in the official group");
+            return;
+        }
+    }
+    return api_call
+}
+
 export const getNftsFromApi = async (handleStatus: (value: number) => Promise<void>) => {
     const ownerAddress = await signer.getAddress();
     /* eslint-disable no-console */
     console.log("owner?", ownerAddress)
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+    const api_call = await generateTicketApi(ownerAddress, handleStatus, 0);
     /* eslint-disable no-console */
     console.log("we?", api_call)
-    const awaiting_mints = api_call.data.data.length
-    if (awaiting_mints === 0) {
-        console.warn("no pending mints")
-        return false;
-    }
+    const awaiting_mints = api_call?.data.data.length;
     const NftToMint = [];
     // save nft ids
     const NftIds = [];
     for (let i = 0; i < awaiting_mints; i++) {
-        const _api_call = api_call.data.data[i]
+        const _api_call = api_call?.data.data[i]
         const ticket = { tokenId: _api_call.token_id, quantity: _api_call.quantity, mintNonce: _api_call.mint_nonce, owner: ownerAddress, signature: _api_call.signature }
         const signedNFT = ticket
         NftToMint.push(signedNFT)
@@ -97,18 +113,18 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     console.log(`tokens ${NftToMint} minted`)
 
     // show nft images & data
-    const finalResult = [];
-    // loop for every nft id
-    for (const single_nft of NftIds) {
-        // get nft info
-        const nft_info = await axios.get(`http://127.0.0.1:8000/tokenInfo?tokenId=${parseInt(single_nft)}`);
-        // get nft image
-        const nft_image = await axios.get(`http://127.0.0.1:8000/tokenImage?tokenId=${parseInt(single_nft)}`);
-        // push to final results
-        finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
-    }
+    // const finalResult = [];
+    // // loop for every nft id
+    // for (const single_nft of NftIds) {
+    //     // get nft info
+    //     const nft_info = await axios.get(`http://127.0.0.1:8000/tokenInfo?tokenId=${parseInt(single_nft)}`);
+    //     // get nft image
+    //     const nft_image = await axios.get(`http://127.0.0.1:8000/tokenImage?tokenId=${parseInt(single_nft)}`);
+    //     // push to final results
+    //     finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
+    // }
 
-    console.log("finalResults", finalResult);
+    // console.log("finalResults", finalResult);
 
     return true;
 }
