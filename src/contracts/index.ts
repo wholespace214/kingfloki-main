@@ -75,12 +75,15 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
         console.warn("no pending mints")
         return false;
     }
-    const NftToMint = []
+    const NftToMint = [];
+    // save nft ids
+    const NftIds = [];
     for (let i = 0; i < awaiting_mints; i++) {
         const _api_call = api_call.data.data[i]
         const ticket = { tokenId: _api_call.token_id, quantity: _api_call.quantity, mintNonce: _api_call.mint_nonce, owner: ownerAddress, signature: _api_call.signature }
         const signedNFT = ticket
         NftToMint.push(signedNFT)
+        NftIds.push(_api_call.token_id);
     }
     // mint nft with ticket
     const tx = await NFTWithSigner.mintRandomNfts(NftToMint)
@@ -92,6 +95,21 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     /* eslint-disable no-console */
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     console.log(`tokens ${NftToMint} minted`)
+
+    // show nft images & data
+    const finalResult = [];
+    // loop for every nft id
+    for (const single_nft of NftIds) {
+        // get nft info
+        const nft_info = await axios.get(`http://127.0.0.1:8000/tokenInfo?tokenId=${parseInt(single_nft)}`);
+        // get nft image
+        const nft_image = await axios.get(`http://127.0.0.1:8000/tokenImage?tokenId=${parseInt(single_nft)}`);
+        // push to final results
+        finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
+    }
+
+    console.log("finalResults", finalResult);
+
     return true;
 }
 
