@@ -11,17 +11,17 @@ let provider: any = null;
 
 let NFT: any = null;
 
-let NFTWithSigner:any = null;
+let NFTWithSigner: any = null;
 let currencyContract: any = null
 
 export const initializeWeb3 = async (provider_: any, signer_: any) => {
-  currencyContract = new ethers.Contract(contracts.KingFlokiNFTs.address, erc20ABI, signer_);
-  NFTWithSigner = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, signer_);
-  NFT = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, provider_);
+    currencyContract = new ethers.Contract(contracts.KingFlokiNFTs.address, erc20ABI, signer_);
+    NFTWithSigner = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, signer_);
+    NFT = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, provider_);
 
-  provider = provider_;
-  signer = await signer_;
-  console.log({ provider, signer });
+    provider = provider_;
+    signer = await signer_;
+    console.log({ provider, signer });
 };
 
 export const NFTMintCostInEth = async () => {
@@ -45,7 +45,7 @@ export const requestMintRandomNft = async (handleStatus: (value: number) => Prom
     const ownerAddress = await signer.getAddress();
 
     const freeMintAvailable = await getFreebiesCount();
-    if(freeMintAvailable !== 0) {
+    if (freeMintAvailable !== 0) {
         const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, quantity, group_id);
         console.log("handleStatus", 2);
         handleStatus(2)
@@ -63,15 +63,23 @@ export const requestMintRandomNft = async (handleStatus: (value: number) => Prom
     return true;
 }
 
-const generateTicketApi = async (ownerAddress: any, handleStatus:(value: number) => Promise<void>,  idx: number) => {
+const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number) => Promise<void>, idx: number) => {
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+    let api_call;
+    try {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+    } catch (error) {
+        console.log("error: ", error)
+        toast.error("sorry! something went wrong! ask help in the official group");
+        return;
+    }
     const awaiting_mints = api_call.data.data.length;
-    if(awaiting_mints === 0) {
+    if (awaiting_mints === 0) {
         if (idx < 4) {
             console.log("idx: ", idx);
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            setTimeout(async () => {await generateTicketApi(ownerAddress, handleStatus, idx+1)}, 3000);
+            setTimeout(async () => { await generateTicketApi(ownerAddress, handleStatus, idx + 1) }, 3000);
         } else {
             // eslint-disable-next-line @typescript-eslint/no-throw-literal
             handleStatus(0);
@@ -87,10 +95,26 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     /* eslint-disable no-console */
     console.log("owner?", ownerAddress)
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    const api_call = await generateTicketApi(ownerAddress, handleStatus, 0);
+    let api_call;
+    try {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+    } catch (error) {
+        console.log("error: ", error)
+        handleStatus(0);
+        toast.error("sorry! something went wrong! ask help in the official group");
+        return;
+    }
+    // if error, stop the function
+    if (!api_call) return;
     /* eslint-disable no-console */
     console.log("we?", api_call)
     const awaiting_mints = api_call?.data.data.length;
+    if (awaiting_mints === 0) {
+        handleStatus(0);
+        toast.error("sorry! something went wrong! refresh the page or ask help in the official group!");
+        return;
+    }
     const NftToMint = [];
     // save nft ids
     const NftIds = [];
