@@ -7,7 +7,7 @@ import './index.css';
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { metaMaskWallet, trustWallet } from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { goerli } from 'wagmi/chains';
+import { bscTestnet } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 window.Buffer = require('buffer').Buffer;
 
 const { chains, provider } = configureChains(
-  [goerli],
+  [bscTestnet],
   [alchemyProvider({ apiKey: '6mDnh0_FqrDQzdcOCI_O5NkDs70x4VYp' }), publicProvider()]
 );
 
@@ -46,20 +46,18 @@ const wagmiClient = createClient({
   provider
 });
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        chains={chains}
-        // theme={KingpassTheme}
-        modalSize="compact"
-        appInfo={{
-          appName: 'King Pass'
-        }}
-      >
+  <WagmiConfig client={wagmiClient}>
+    <RainbowKitProvider
+      chains={chains}
+      // theme={KingpassTheme}
+      modalSize="compact"
+      appInfo={{
+        appName: 'King Pass'
+      }}
+    >
       <React.StrictMode>
         <App />
       </React.StrictMode>
