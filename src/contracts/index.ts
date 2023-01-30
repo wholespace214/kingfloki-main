@@ -12,7 +12,7 @@ let provider: any = null;
 let NFT: any = null;
 
 let NFTWithSigner: any = null;
-let currencyContract: any = null
+let currencyContract: any = null;
 
 export const initializeWeb3 = async (provider_: any, signer_: any) => {
     currencyContract = new ethers.Contract(contracts.KingFlokiNFTs.address, erc20ABI, signer_);
@@ -95,16 +95,7 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     /* eslint-disable no-console */
     console.log("owner?", ownerAddress)
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    let api_call;
-    try {
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
-    } catch (error) {
-        console.log("error: ", error)
-        handleStatus(0);
-        toast.error("sorry! something went wrong! ask help in the official group");
-        return;
-    }
+    const api_call = await generateTicketApi(ownerAddress, handleStatus, 0)
     // if error, stop the function
     if (!api_call) return;
     /* eslint-disable no-console */
