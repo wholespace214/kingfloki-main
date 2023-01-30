@@ -132,9 +132,9 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     // loop for every nft id
     for (const single_nft of NftIds) {
         // get nft info
-        const nft_info = await axios.get(`http://127.0.0.1:8000/tokenInfo?tokenId=${parseInt(single_nft)}`);
+        const nft_info = await axios.get(`https://webhooks.kingfinance.co/tokenInfo?tokenId=${parseInt(single_nft)}`);
         // get nft image
-        const nft_image = await axios.get(`http://127.0.0.1:8000/tokenImage?tokenId=${parseInt(single_nft)}`);
+        const nft_image = await axios.get(`https://webhooks.kingfinance.co/tokenImage?tokenId=${parseInt(single_nft)}`);
         // push to final results
         finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
     }
