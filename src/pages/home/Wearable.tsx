@@ -31,7 +31,7 @@ export const Wearable = () => {
           Play Video
         </PlayVideoButton>
 
-        <ALink href="https://discord.gg/gtzFGPacK9" rel="noopenner noreferrer" target={'_blank'}>
+        <ALink href="https://discord.gg/kingfinance" rel="noopenner noreferrer" target={'_blank'}>
           <DiscordButton>
             <ReactIcon>
               <SiDiscord style={{ width: '100%', height: '100%' }} />
