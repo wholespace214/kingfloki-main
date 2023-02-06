@@ -34,6 +34,7 @@ import NavTwitterIcon from "../assets/svg/menu_icon-01.svg"
 import NavTelegramIcon from "../assets/svg/menu_icon-02.svg"
 import NavDiscordIcon from "../assets/svg/menu_icon-03.svg"
 import NavOpenseaIcon from "../assets/svg/menu_icon-04.svg"
+import DiscordIcon from '../assets/svg/discord.svg'
 
 // Wearable
 import DeskIslandPng from '../assets/png/wearable/island.png'
@@ -52,4 +53,4 @@ import EbmLoaderVideo from "../assets/video/Loader-vp9-chrome.webm"
 import TopVideo from '../assets/video/topVideo.mp4'
 import TopVideoMob from '../assets/video/topVideoMOB.mp4'
 
-export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon, EbmKFVideo1, EbmMobKFVideo1, EbmKFVideo3, DeskIslandPng, MobIslandPng, DeskKingFlokiVideo, MobKingFlokiVideo, KFVideo4, EbmKFVideo4, OutnowPng, FloadingCard, KFRunVisual, KFCompetition, DeskDiveWorldPng, LoaderVideo, EbmLoaderVideo ,TopVideo, TopVideoMob}
+export { Logo, FooterLogoSvg, GitbookIcon, MediumIcon, TelegramIcon, TwitterIcon, YoutubeIcon, WearableBg, KingFloki3D, NftGamesSvg, EthereumSvg, CharactersPng, FloatingCard, FloatingCardMobile, MintCardGif, NFTCarouselImg, RaityGif, CharacterGroup, GradientRarity, TradeOpenseaImg, PotionBox, OpenseaLogo, BgBottom, KFVideo1, MobKFVideo1, KFVideo2, MobKFVideo2, KFVideo3, MobKFVideo3, NavDiscordIcon, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon, EbmKFVideo1, EbmMobKFVideo1, EbmKFVideo3, DeskIslandPng, MobIslandPng, DeskKingFlokiVideo, MobKingFlokiVideo, KFVideo4, EbmKFVideo4, OutnowPng, FloadingCard, KFRunVisual, KFCompetition, DeskDiveWorldPng, LoaderVideo, EbmLoaderVideo ,TopVideo, TopVideoMob, DiscordIcon}

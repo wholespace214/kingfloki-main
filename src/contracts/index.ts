@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import { ethers } from 'ethers';
 import contracts from './contracts.json';
 import { erc20ABI } from 'wagmi'
@@ -14,13 +13,13 @@ let NFT: any = null;
 let NFTWithSigner: any = null;
 let currencyContract: any = null;
 
-export const initializeWeb3 = async (provider_: any, signer_: any) => {
+export const initializeWeb3 = (provider_: any, signer_: any) => {
     currencyContract = new ethers.Contract(contracts.KingFlokiNFTs.address, erc20ABI, signer_);
     NFTWithSigner = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, signer_);
     NFT = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, provider_);
 
     provider = provider_;
-    signer = await signer_;
+    signer = signer_;
     console.log({ provider, signer });
 };
 

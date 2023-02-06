@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import { Modal } from 'src/components/Modal';
 import { CustomConnectButton } from 'src/components/Button';
+import { toast } from 'react-toastify';
 
 export const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
+  const handleTempClick = () => {
+    toast.error('Connect wallet is not available yet');
+  };
   return (
     <>
       <HeaderContainer>
@@ -53,7 +57,8 @@ export const Header = () => {
               <img src={NavOpenseaIcon} alt="opeansea-icon" style={{ width: '100%', height: '100%' }} />
             </ExternalLink>
           </ExternalLinks>
-          <CustomConnectButton />
+          {/* <CustomConnectButton /> */}
+          <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
         </HeaderAction>
       </HeaderContainer>
       <Modal isState={isOpen} setState={setOpen} />
@@ -147,4 +152,25 @@ const ALink = styled.a`
   outline: none;
   text-decoration: none;
   color: inherit;
+`;
+
+const TempConnectButton = styled.div`
+  width: 170px;
+  height: 62px;
+  text-transform: uppercase;
+  background-color: #f48e37;
+  font-size: 14px;
+  font-family: 'gotham-bold';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-transform: uppercase; */
+  color: #ffffff;
+  border: none;
+  letter-spacing: -0.12px;
+  cursor: pointer;
+  @media screen and (max-width: 640px) {
+    width: 90px;
+    font-size: 10px;
+  }
 `;

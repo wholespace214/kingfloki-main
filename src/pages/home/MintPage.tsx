@@ -124,6 +124,11 @@ export const MingPage = () => {
         setLoad(false);
       });
   };
+
+  const handleTempClick = () => {
+    toast.error('Connect wallet is not available yet');
+  };
+
   return (
     <>
       <MingPageContainer>
@@ -171,7 +176,8 @@ export const MingPage = () => {
                       {isLoad ? <Spinner /> : 'Mint Now'}
                     </MintButton>
                   ) : (
-                    <WalletConnectButton />
+                    // <WalletConnectButton />
+                    <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
                   )}
                 </MintButtonBox>
               </MintCardAction>
@@ -496,5 +502,34 @@ const MintButtonBox = styled.div`
   gap: 8px;
   @media screen and (max-width: 960px) {
     flex-direction: column;
+  }
+`;
+
+const TempConnectButton = styled.div`
+  background: #f48e37 0% 0% no-repeat padding-box;
+  height: 56px;
+  border: none;
+  width: 373px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'gotham-bold';
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    height: 42px;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 450px) {
+    height: 32px;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 350px) {
+    height: 27px;
+    font-size: 11px;
   }
 `;
