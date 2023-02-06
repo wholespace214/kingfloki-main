@@ -16,7 +16,7 @@ export const Welcome = () => {
           <WelcomeCardContent>
             <WelcomeCardContentWrapper>
               <PrimaryTitle>What is King Floki?</PrimaryTitle>
-              <SecondaryTitle>WELCOME TO THE METAVERSE</SecondaryTitle>
+              <SecondaryTitle>WELCOME TO KING FLOKI WORLD</SecondaryTitle>
               <ContentText>
                 King Floki is a creative metaverse built in Webgl, born to improve people’s accessibility and gaming
                 experience.
