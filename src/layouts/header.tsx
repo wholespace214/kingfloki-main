@@ -11,7 +11,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const handleTempClick = () => {
-    toast.error('Connect wallet is not available yet');
+    toast.error('Be ready to mint on the 17th of February, stay tuned!');
   };
   return (
     <>
