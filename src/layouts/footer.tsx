@@ -4,7 +4,7 @@ import { DiscordIcon, FooterLogoSvg, GitbookIcon, TelegramIcon, TwitterIcon, You
 export const Footer = () => {
   return (
     <FooterContainer>
-      <LogoSection>
+      <LogoSection href="https://kingworld.finance" target={'_blank'}>
         <SmallText>POWERD BY</SmallText>
         <KingLogo src={FooterLogoSvg} alt="footer-logo" />
       </LogoSection>
@@ -46,11 +46,13 @@ const FooterContainer = styled.div`
   gap: 2rem;
 `;
 
-const LogoSection = styled.div`
+const LogoSection = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
+  outline: none;
+  cursor: pointer;
 `;
 
 const SmallText = styled.div`
