@@ -53,6 +53,7 @@ const LogoSection = styled.a`
   gap: 3px;
   outline: none;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 const SmallText = styled.div`
