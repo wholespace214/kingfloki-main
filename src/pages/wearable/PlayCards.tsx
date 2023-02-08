@@ -6,9 +6,9 @@ const CardData = [
   {
     id: 1,
     img: KFRunVisual,
-    title: 'Play to earn',
+    title: 'Compete to win',
     content: 'As you dive into King Floki, you can find new ways to generate wealth and own liquidity.',
-    btnName: 'Compete to win',
+    btnName: 'RUN NOW',
     link: 'https://kingflokiworld.com'
   },
   {
@@ -17,7 +17,7 @@ const CardData = [
     title: 'King competitions',
     content:
       'Compete and win. Online weekly competitions against other KF users to win cash prizes and unique in game NFTs.',
-    btnName: 'Compete Now',
+    btnName: 'COMPETE NOW',
     link: 'https://kingflokiworld.com'
   }
 ];
