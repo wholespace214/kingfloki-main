@@ -43,7 +43,7 @@ export const Wearable = () => {
       <Characters>
         <img src={CharactersPng} alt="character-png" style={{ width: '100%', height: '100%' }} />
       </Characters>
-      <ModalVideo channel="youtube" isOpen={isVideoOpen} videoId="ZoCALisPLec" onClose={() => setVideoOpen(false)} />
+      <ModalVideo channel="youtube" isOpen={isVideoOpen} videoId="ORfL1Nyx9-I" onClose={() => setVideoOpen(false)} />
     </WearableContainer>
   );
 };

@@ -42,7 +42,7 @@ export const Welcome = () => {
         </PlayVideoButton>
       </WelcomeContent>
       <WelcomeImage alt="welcome-image" />
-      <ModalVideo channel="youtube" isOpen={isVideoOpen} videoId="ORfL1Nyx9-I" onClose={() => setVideoOpen(false)} />
+      <ModalVideo channel="youtube" isOpen={isVideoOpen} videoId="ZoCALisPLec" onClose={() => setVideoOpen(false)} />
     </WelcomeContainer>
   );
 };
