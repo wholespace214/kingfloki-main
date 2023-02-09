@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { ethers } from 'ethers';
 import contracts from './contracts.json';
-import { erc20ABI } from 'wagmi'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -11,22 +10,24 @@ let provider: any = null;
 let NFT: any = null;
 
 let NFTWithSigner: any = null;
-let currencyContract: any = null;
+let kingPass:any = null;
 
-export const initializeWeb3 = (provider_: any, signer_: any) => {
-    currencyContract = new ethers.Contract(contracts.KingFlokiNFTs.address, erc20ABI, signer_);
+export const initializeWeb3 = async (provider_: any, signer_: any) => {
     NFTWithSigner = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, signer_);
     NFT = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, provider_);
+    kingPass = new ethers.Contract(contracts.KingPass.address, contracts.KingPass.abi, provider_);
 
     provider = provider_;
-    signer = signer_;
-    console.log({ provider, signer });
+    signer = await signer_;
+    return true;
 };
 
 export const NFTMintCostInEth = async () => {
-    const tx = await NFT.randomNftMintCostETH();
-    const _tx = parseInt(tx);
-    return _tx;
+    if( NFT !== null && provider !== null) {
+        const tx = await NFT.randomNftMintCostETH();
+        const _tx = parseInt(tx);
+        return _tx;
+    }
 }
 
 export const getFreebiesCount = async () => {
@@ -35,35 +36,34 @@ export const getFreebiesCount = async () => {
 
     const freeMintAvailable = await NFTWithSigner.freeMintsAvailable(ownerAddress, group_id);
     const _freeMintAvailable = parseInt(freeMintAvailable);
-    console.log({ _freeMintAvailable })
     return _freeMintAvailable
 }
 
 export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>, quantity: number) => {
-    const group_id = 0
-    const ownerAddress = await signer.getAddress();
+    if(signer !== null && signer !== undefined && NFTWithSigner !== null) {
+        const group_id = 0
+        const ownerAddress = await signer.getAddress();
 
-    const freeMintAvailable = await getFreebiesCount();
-    if (freeMintAvailable !== 0) {
-        const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, quantity, group_id);
-        console.log("handleStatus", 2);
-        handleStatus(2)
-        await tx.wait()
-    } else {
-        const _randomAmount = await NFTMintCostInEth();
-        const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, quantity, group_id, { value: _randomAmount * quantity });
-        console.log("handleStatus", 2);
-        handleStatus(2)
-        await tx.wait()
+        const freeMintAvailable = await getFreebiesCount();
+        if (freeMintAvailable !== 0) {
+            const tx = await NFTWithSigner.requestFreeMintRandomNft(ownerAddress, quantity, group_id);
+            handleStatus(2)
+            await tx.wait()
+        } else {
+            const _randomAmount = await NFTMintCostInEth();
+            if(_randomAmount !== undefined) {
+                const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, quantity, group_id, { value: _randomAmount * quantity });
+                handleStatus(2)
+                await tx.wait()
+            }
+        }
+
+        handleStatus(3)
+        return true;
     }
-
-    handleStatus(3)
-    console.log("handleStatus", 3);
-    return true;
 }
 
 const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number) => Promise<void>, idx: number) => {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     let api_call;
     try {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -77,8 +77,11 @@ const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number
     if (awaiting_mints === 0) {
         if (idx < 4) {
             console.log("idx: ", idx);
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            setTimeout(async () => { await generateTicketApi(ownerAddress, handleStatus, idx + 1) }, 3000);
+            setTimeout(() => { 
+                (async() => {
+                    await generateTicketApi(ownerAddress, handleStatus, idx + 1) 
+                })()
+            }, 3000);
         } else {
             // eslint-disable-next-line @typescript-eslint/no-throw-literal
             handleStatus(0);
@@ -96,9 +99,7 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const api_call = await generateTicketApi(ownerAddress, handleStatus, 0)
     // if error, stop the function
-    if (!api_call) return;
-    /* eslint-disable no-console */
-    console.log("we?", api_call)
+    if (api_call == null) return;
     const awaiting_mints = api_call?.data.data.length;
     if (awaiting_mints === 0) {
         handleStatus(0);
@@ -117,10 +118,8 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     }
     // mint nft with ticket
     const tx = await NFTWithSigner.mintRandomNfts(NftToMint)
-    console.log("handleStatus", 4);
     handleStatus(4);
     await tx.wait()
-    console.log("handleStatus", 5);
     handleStatus(5);
     /* eslint-disable no-console */
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -143,7 +142,46 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     return true;
 }
 
-// export const handleApprove = async() => {
-//   const tx = await currencyContract.approve()
-// }
+export const isAbleToConnect = async () => {
+    if(signer !== null && signer !== undefined && provider !== null) {
+        let isAble = false;
+        
+        const ownerAddress = await signer.getAddress();
+        
+        // const tx = await kingPass.checkIfPassActive(ownerAddress);
+        const isKingpassHolder = testPass(ownerAddress);
 
+        const now = new Date(Date.now()).toUTCString();
+        const sixteenth = 'Thu, 16 Feb 2023 00:00:00 GMT';
+        const seventeenth = 'Fri, 17 Feb 2023 00:00:00 GMT';
+        
+        const datum_now = Date.parse(now);
+        const datum_six = Date.parse(sixteenth);
+        const datum_seven = Date.parse(seventeenth);
+
+        if(isKingpassHolder && (datum_now > datum_six)) {
+            isAble = true;
+        } else if(datum_now > datum_seven) {
+            isAble = true;
+        } else {
+            isAble = false;
+        }
+
+        return isAble;
+    }
+}
+
+const testPass = (user_address: string) => {
+    const kingpass_addresses = [
+        "0xE6Aa61C88BC4a178E53aD2d2A3BC0b07Fcfd576a"
+    ]
+    let isActive = false;
+    for(const single_address of kingpass_addresses) {
+        if(single_address === user_address) {
+            isActive = true;
+        }
+    }
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    console.log(`user ${user_address} kingpass status: ${isActive}`);
+    return isActive
+}

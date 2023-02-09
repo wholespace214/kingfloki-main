@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAccount, useProvider, useSigner } from 'wagmi';
 import { initializeWeb3 } from 'src/contracts';
@@ -19,13 +20,15 @@ export const Web3Provider = (props: propsType) => {
   const { data: signer } = useSigner();
 
   const [isInitialized, setInitialized] = useState(false);
+  console.log({ isInitialized });
   useEffect(() => {
     if (isConnected) {
       (async () => {
         // eslint-disable-next-line no-console
         // console.log(signer);
-        await initializeWeb3(provider, signer);
-        setInitialized(true);
+        await initializeWeb3(provider, signer).then((res) => {
+          setInitialized(res);
+        });
       })();
     }
   }, [isConnected, signer]);

@@ -1,6 +1,6 @@
 {
   "KingFlokiNFTs": {
-    "address": "0xd1c0798172E3fAC58579650c717eb442A862Ea34",
+    "address": "0x7143b8bcd8cca97db6f200e1da2e2db7adc83367",
     "abi": [
       {
         "inputs": [],
@@ -417,11 +417,35 @@
         "inputs": [
           {
             "internalType": "address",
-            "name": "",
+            "name": "who",
             "type": "address"
           }
         ],
-        "name": "isPassActive",
+        "name": "checkIfPassActive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ]
+  },
+  "KingPass": {
+    "address": "0x907B8AAaeCf158c3b2E903D71caC7af4a6c93004",
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "who",
+            "type": "address"
+          }
+        ],
+        "name": "checkIfPassActive",
         "outputs": [
           {
             "internalType": "bool",

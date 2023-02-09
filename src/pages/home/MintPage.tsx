@@ -4,7 +4,13 @@ import { toast } from 'react-toastify';
 import { Spinner } from 'src/components/Spinner';
 import { FloatingCard, FloatingCardMobile, MintCardGif, EthereumSvg, NFTCarouselImg } from 'src/config/image';
 import { useWeb3Store } from 'src/context/web3context';
-import { getFreebiesCount, getNftsFromApi, NFTMintCostInEth, requestMintRandomNft } from 'src/contracts';
+import {
+  getFreebiesCount,
+  getNftsFromApi,
+  NFTMintCostInEth,
+  requestMintRandomNft,
+  isAbleToConnect
+} from 'src/contracts';
 import { useAccount } from 'wagmi';
 import styled from 'styled-components';
 import { MintLoader } from 'src/components/Modal/mintLoader';
@@ -20,7 +26,9 @@ export const MingPage = () => {
   const [mintStatus, setMintStatus] = useState(0);
   const [hasPending, setHasPending] = useState(false);
   const [freebies, setFreebies] = useState(0);
+  const [isAbleConnect, setAbleconnect] = useState(false);
   const { address } = useAccount();
+
   const handleClick = (symbol: string) => {
     let num = mintNum;
     if (symbol === 'minus') {
@@ -42,8 +50,9 @@ export const MingPage = () => {
     if (isInitialized) {
       (async () => {
         const cost = await NFTMintCostInEth();
-        console.log({ cost });
-        setRandomMinintCost(ethers.utils.formatEther(cost));
+        if (cost !== undefined) {
+          setRandomMinintCost(ethers.utils.formatEther(cost));
+        }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
         /* eslint-disable no-console */
@@ -55,6 +64,8 @@ export const MingPage = () => {
 
         const _freebies = await getFreebiesCount();
         setFreebies(_freebies);
+        const isAble = await isAbleToConnect();
+        if (isAble !== undefined) setAbleconnect(isAble);
       })();
     }
   }, [isInitialized]);
@@ -166,17 +177,20 @@ export const MingPage = () => {
                       {isLoad ? <Spinner /> : 'Get Pending NFTs'}
                     </MintButton>
                   )}
-                  {isConnected ? (
-                    <MintButton
-                      disabled={isLoad}
-                      onClick={() => {
-                        handleContractFunction(async () => await testClick());
-                      }}
-                    >
-                      {isLoad ? <Spinner /> : 'Mint Now'}
-                    </MintButton>
+                  {isAbleConnect ? (
+                    isConnected ? (
+                      <WalletConnectButton />
+                    ) : (
+                      <MintButton
+                        disabled={isLoad}
+                        onClick={() => {
+                          handleContractFunction(async () => await testClick());
+                        }}
+                      >
+                        {isLoad ? <Spinner /> : 'Mint Now'}
+                      </MintButton>
+                    )
                   ) : (
-                    // <WalletConnectButton />
                     <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
                   )}
                 </MintButtonBox>
