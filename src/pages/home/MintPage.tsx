@@ -49,9 +49,11 @@ export const MingPage = () => {
   useEffect(() => {
     if (isInitialized) {
       (async () => {
-        const cost = await NFTMintCostInEth();
+        // const cost = await NFTMintCostInEth();
+        const cost = 0.033;
         if (cost !== undefined) {
-          setRandomMintCost(ethers.utils.formatEther(cost));
+          // setRandomMintCost(ethers.utils.formatEther(cost));
+          setRandomMintCost(cost.toString());
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
@@ -69,6 +71,13 @@ export const MingPage = () => {
       })();
     }
   }, [isInitialized]);
+
+  useEffect(() => {
+    console.log({ randomMintCost });
+    console.log('randomMintCost', parseFloat(randomMintCost));
+    console.log('quantity: ', quantity);
+    console.log('Total: ', parseFloat(randomMintCost) * quantity);
+  }, [quantity]);
 
   useEffect(() => {
     console.log('mintStatus: ', mintStatus);
@@ -187,12 +196,12 @@ export const MingPage = () => {
                   )}
                   {isConnected ? (
                     <MintButton
-                      disabled={isLoad}
+                      disabled={isLoad || parseInt(randomMintCost) >= 1000}
                       onClick={() => {
                         checkAbleMint();
                       }}
                     >
-                      {isLoad ? <Spinner /> : 'Mint Now'}
+                      {isLoad ? <Spinner /> : parseInt(randomMintCost) >= 1000 ? 'Cannot mint Now' : 'Mint Now'}
                     </MintButton>
                   ) : (
                     <WalletConnectButton />
@@ -201,14 +210,24 @@ export const MingPage = () => {
               </MintCardAction>
               <MintCardFooter>
                 <EtherValueContainer>
-                  <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
-                  <Label>Price</Label>
+                  <Label>
+                    <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
+                    Price
+                  </Label>
                   <EtherValue>{isConnected ? (randomMintCost === '0' ? '-' : randomMintCost) : '-'} ETH</EtherValue>
                 </EtherValueContainer>
                 <EtherValueContainer>
-                  <Label>Total </Label>
+                  <Label>
+                    <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
+                    Total
+                  </Label>
                   <EtherValue>
-                    {isConnected ? (randomMintCost === '0' ? '-' : parseInt(randomMintCost) * quantity) : '-'} ETH
+                    {isConnected
+                      ? randomMintCost === '0'
+                        ? '-'
+                        : (parseFloat(randomMintCost) * quantity).toFixed(3)
+                      : '-'}
+                    ETH
                   </EtherValue>
                 </EtherValueContainer>
                 <FreebiesContainer>
@@ -449,34 +468,33 @@ const MintCardFooter = styled.div`
 
 const EtherValueContainer = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 3px;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
 `;
 
 const EtherIcon = styled.img`
-  width: 32px;
+  width: 24px;
   height: auto;
   @media screen and (max-width: 960px) {
-    width: 28px;
-  }
-  @media screen and (max-width: 450px) {
-    width: 24px;
+    width: 20px;
   }
 `;
 const EtherValue = styled.div`
-  font-size: 15px;
+  font-size: 13px;
+  text-align: center;
   color: #f2f5f4;
   @media screen and (max-width: 960px) {
-    font-size: 12px;
-  }
-  @media screen and (max-width: 450px) {
-    font-size: 9px;
+    font-size: 10px;
   }
 `;
 
 const FreebiesContainer = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 6px;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -560,7 +578,14 @@ const TempConnectButton = styled.div`
 `;
 
 const Label = styled.div`
-  font-size: 15px;
+  font-size: 13px;
   color: #ff7b03;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  @media screen and (max-width: 960px) {
+    font-size: 10px;
+  }
 `;

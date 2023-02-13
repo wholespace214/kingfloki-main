@@ -20,7 +20,7 @@ window.Buffer = require('buffer').Buffer;
 
 const { chains, provider } = configureChains(
   [goerli],
-  [alchemyProvider({ apiKey: '6mDnh0_FqrDQzdcOCI_O5NkDs70x4VYp' }), publicProvider()]
+  [alchemyProvider({ apiKey: 'GdsYp03ZUyka82YZVD15v7yl6qY-cIuE' }), publicProvider()]
 );
 
 const connectors = connectorsForWallets([
