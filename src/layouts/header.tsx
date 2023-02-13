@@ -1,27 +1,27 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable no-console */
+import { useState } from 'react';
 import styled from 'styled-components';
 import { NavDiscordIcon, Logo, NavOpenseaIcon, NavTwitterIcon, NavTelegramIcon } from 'src/config/image';
 import { useNavigate } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import { Modal } from 'src/components/Modal';
 import { CustomConnectButton } from 'src/components/Button';
-import { toast } from 'react-toastify';
-import { isAbleToConnect } from 'src/contracts';
 
 export const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
-  const [isAbleConnect, setAbleConnect] = useState(false);
-  const handleTempClick = () => {
-    toast.error('Be ready to mint on the 17th of February, stay tuned!');
-  };
+  // const [isAbleConnect, setAbleConnect] = useState(false);
+  // const handleTempClick = () => {
+  //   toast.error('Be ready to mint on the 17th of February, stay tuned!');
+  // };
 
-  useEffect(() => {
-    (async () => {
-      const isAble = await isAbleToConnect();
-      if (isAble !== undefined) setAbleConnect(isAble);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const isAble = await isAbleToConnect();
+  //     console.log({ isAble });
+  //     if (isAble !== undefined) setAbleConnect(isAble);
+  //   })();
+  // }, []);
 
   return (
     <>
@@ -67,11 +67,11 @@ export const Header = () => {
               <img src={NavOpenseaIcon} alt="opeansea-icon" style={{ width: '100%', height: '100%' }} />
             </ExternalLink>
           </ExternalLinks>
-          {isAbleConnect ? (
-            <CustomConnectButton />
-          ) : (
-            <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
-          )}
+          {/* {isAbleConnect ? ( */}
+          <CustomConnectButton />
+          {/* ) : (
+             <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
+           )} */}
         </HeaderAction>
       </HeaderContainer>
       <Modal isState={isOpen} setState={setOpen} />

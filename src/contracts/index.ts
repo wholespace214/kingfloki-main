@@ -26,6 +26,7 @@ export const NFTMintCostInEth = async () => {
     if( NFT !== null && provider !== null) {
         const tx = await NFT.randomNftMintCostETH();
         const _tx = parseInt(tx);
+        console.log({ _tx });
         return _tx;
     }
 }

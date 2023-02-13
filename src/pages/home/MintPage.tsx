@@ -19,7 +19,7 @@ import { ethers } from 'ethers';
 import { WalletConnectButton } from 'src/components/Button';
 
 export const MingPage = () => {
-  const [mintNum, setMintNum] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [isLoad, setLoad] = useState(false);
   const { isInitialized } = useWeb3Store();
   const { isConnected } = useAccount();
@@ -30,28 +30,28 @@ export const MingPage = () => {
   const { address } = useAccount();
 
   const handleClick = (symbol: string) => {
-    let num = mintNum;
+    let num = quantity;
     if (symbol === 'minus') {
       num--;
-      if (mintNum > 1) setMintNum(num);
+      if (quantity > 1) setQuantity(num);
     } else {
       if (freebies !== 0) {
-        if (mintNum < freebies) {
+        if (quantity < freebies) {
           num++;
         }
       } else {
         num++;
       }
-      setMintNum(num);
+      setQuantity(num);
     }
   };
-  const [randomMinintCost, setRandomMinintCost] = useState('0');
+  const [randomMintCost, setRandomMintCost] = useState('0');
   useEffect(() => {
     if (isInitialized) {
       (async () => {
         const cost = await NFTMintCostInEth();
         if (cost !== undefined) {
-          setRandomMinintCost(ethers.utils.formatEther(cost));
+          setRandomMintCost(ethers.utils.formatEther(cost));
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
@@ -88,20 +88,20 @@ export const MingPage = () => {
   }
   async function testClick() {
     if (freebies > 0) {
-      if (freebies < mintNum) {
+      if (freebies < quantity) {
         toast.error('Mints number cannot exceed freebies amount');
         return;
       }
     }
     setMintStatus(1);
-    const isReq = await requestMintRandomNft(handleStatus, mintNum);
+    const isReq = await requestMintRandomNft(handleStatus, quantity);
     if (isReq) {
       /* eslint-disable no-console */
       console.log('requested!!');
       await _getNftsFromApi();
       if (freebies > 0) {
-        console.log({ freebies, mintNum });
-        setFreebies(freebies - mintNum);
+        console.log({ freebies, quantity });
+        setFreebies(freebies - quantity);
       }
     }
   }
@@ -140,6 +140,14 @@ export const MingPage = () => {
     toast.error('Be ready to mint on the 17th of February, stay tuned!');
   };
 
+  const checkAbleMint = () => {
+    if (isAbleConnect) {
+      handleContractFunction(async () => await testClick());
+    } else {
+      handleTempClick();
+    }
+  };
+
   return (
     <>
       <MingPageContainer>
@@ -159,8 +167,8 @@ export const MingPage = () => {
                   <MintInput
                     type="number"
                     min={1}
-                    value={mintNum === 0 ? 1 : mintNum}
-                    onChange={(e) => setMintNum(Number(e.target.value))}
+                    value={quantity === 0 ? 1 : quantity}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
                   />
                   <OperationBtn onClick={() => handleClick('plus')}>+</OperationBtn>
                 </MintInputBox>
@@ -177,28 +185,31 @@ export const MingPage = () => {
                       {isLoad ? <Spinner /> : 'Get Pending NFTs'}
                     </MintButton>
                   )}
-                  {isAbleConnect ? (
-                    isConnected ? (
-                      <WalletConnectButton />
-                    ) : (
-                      <MintButton
-                        disabled={isLoad}
-                        onClick={() => {
-                          handleContractFunction(async () => await testClick());
-                        }}
-                      >
-                        {isLoad ? <Spinner /> : 'Mint Now'}
-                      </MintButton>
-                    )
+                  {isConnected ? (
+                    <MintButton
+                      disabled={isLoad}
+                      onClick={() => {
+                        checkAbleMint();
+                      }}
+                    >
+                      {isLoad ? <Spinner /> : 'Mint Now'}
+                    </MintButton>
                   ) : (
-                    <TempConnectButton onClick={handleTempClick}>Connect</TempConnectButton>
+                    <WalletConnectButton />
                   )}
                 </MintButtonBox>
               </MintCardAction>
               <MintCardFooter>
                 <EtherValueContainer>
                   <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
-                  <EtherValue>{isConnected ? (randomMinintCost === '0' ? '-' : randomMinintCost) : '-'} ETH</EtherValue>
+                  <Label>Price</Label>
+                  <EtherValue>{isConnected ? (randomMintCost === '0' ? '-' : randomMintCost) : '-'} ETH</EtherValue>
+                </EtherValueContainer>
+                <EtherValueContainer>
+                  <Label>Total </Label>
+                  <EtherValue>
+                    {isConnected ? (randomMintCost === '0' ? '-' : parseInt(randomMintCost) * quantity) : '-'} ETH
+                  </EtherValue>
                 </EtherValueContainer>
                 <FreebiesContainer>
                   <FreebiesLabel>Freebies</FreebiesLabel>
@@ -546,4 +557,10 @@ const TempConnectButton = styled.div`
     height: 27px;
     font-size: 11px;
   }
+`;
+
+const Label = styled.div`
+  font-size: 15px;
+  color: #ff7b03;
+  text-transform: uppercase;
 `;
