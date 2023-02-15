@@ -226,7 +226,7 @@ export const MingPage = () => {
                       ? randomMintCost === '0'
                         ? '-'
                         : (parseFloat(randomMintCost) * quantity).toFixed(3)
-                      : '-'}
+                      : '-'}{' '}
                     ETH
                   </EtherValue>
                 </EtherValueContainer>
