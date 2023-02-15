@@ -64,9 +64,9 @@ export const MingPage = () => {
           setHasPending(true);
         }
 
-        const _freebies = await getFreebiesCount();
+        const _freebies = (await getFreebiesCount()) ?? 0;
         setFreebies(_freebies);
-        const isAble = await isAbleToConnect();
+        const isAble = await isAbleToConnect(address);
         if (isAble !== undefined) setAbleconnect(isAble);
       })();
     }

@@ -10,12 +10,10 @@ let provider: any = null;
 let NFT: any = null;
 
 let NFTWithSigner: any = null;
-let kingPass:any = null;
 
 export const initializeWeb3 = async (provider_: any, signer_: any) => {
     NFTWithSigner = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, signer_);
     NFT = new ethers.Contract(contracts.KingFlokiNFTs.address, contracts.KingFlokiNFTs.abi, provider_);
-    kingPass = new ethers.Contract(contracts.KingPass.address, contracts.KingPass.abi, provider_);
 
     provider = provider_;
     signer = await signer_;
@@ -32,12 +30,14 @@ export const NFTMintCostInEth = async () => {
 }
 
 export const getFreebiesCount = async () => {
-    const group_id = 0
-    const ownerAddress = await signer.getAddress();
+    if(signer !== null && signer !== undefined) {
+        const group_id = 0
+        const ownerAddress = await signer.getAddress();
 
-    const freeMintAvailable = await NFTWithSigner.freeMintsAvailable(ownerAddress, group_id);
-    const _freeMintAvailable = parseInt(freeMintAvailable);
-    return _freeMintAvailable
+        const freeMintAvailable = await NFTWithSigner.freeMintsAvailable(ownerAddress, group_id);
+        const _freeMintAvailable = parseInt(freeMintAvailable);
+        return _freeMintAvailable
+    }
 }
 
 export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>, quantity: number) => {
@@ -143,15 +143,18 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     return true;
 }
 
-export const isAbleToConnect = async () => {
-    if(signer !== null && signer !== undefined && provider !== null) {
+export const isAbleToConnect = async (address: string | undefined) => {
+    if(address !== undefined) {
+        console.log("isAbleToConnect")
         let isAble = false;
         
-        const ownerAddress = await signer.getAddress();
+        // const ownerAddress = await signer.getAddress();
         
-        // const tx = await kingPass.checkIfPassActive(ownerAddress);
-        const isKingpassHolder = testPass(ownerAddress);
-
+        // const isKingpassHolder = testPass(ownerAddress);
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        const kingPass = await axios.get(`https://testwebhooks.kingfinance.co/userHasKingPass?owner=${address}`)
+        const isKingpassHolder: boolean = kingPass.data.status ?? false;
+        console.log({ isKingpassHolder });
         const now = new Date(Date.now()).toUTCString();
         const sixteenth = 'Thu, 16 Feb 2023 00:00:00 GMT';
         const seventeenth = 'Fri, 17 Feb 2023 00:00:00 GMT';
