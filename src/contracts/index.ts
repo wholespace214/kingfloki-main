@@ -68,7 +68,7 @@ const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number
     let api_call;
     try {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+        api_call = await axios.get(`https://testwebhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
     } catch (error) {
         console.log("error: ", error)
         toast.error("sorry! something went wrong! ask help in the official group");
@@ -131,9 +131,9 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     // loop for every nft id
     for (const single_nft of NftIds) {
         // get nft info
-        const nft_info = await axios.get(`https://webhooks.kingfinance.co/tokenInfo?tokenId=${parseInt(single_nft)}`);
+        const nft_info = await axios.get(`https://testwebhooks.kingfinance.co/tokenInfo?tokenId=${parseInt(single_nft)}`);
         // get nft image
-        const nft_image = await axios.get(`https://webhooks.kingfinance.co/tokenImage?tokenId=${parseInt(single_nft)}`);
+        const nft_image = await axios.get(`https://testwebhooks.kingfinance.co/tokenImage?tokenId=${parseInt(single_nft)}`);
         // push to final results
         finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
     }

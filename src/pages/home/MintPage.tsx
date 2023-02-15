@@ -56,7 +56,7 @@ export const MingPage = () => {
           setRandomMintCost(cost.toString());
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
+        const api_call = await axios.get(`https://testwebhooks.kingfinance.co/pendingNfts?owner=${address}`);
         /* eslint-disable no-console */
         console.log('we?', api_call);
         const awaiting_mints = api_call.data.data.length;
