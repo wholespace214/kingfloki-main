@@ -27,8 +27,8 @@ const connectors = connectorsForWallets([
   {
     groupName: 'Select your wallet',
     wallets: [
-      metaMaskWallet({ chains }),
-      trustWallet({ chains })
+      metaMaskWallet({ chains, shimDisconnect: true }),
+      trustWallet({ chains, shimDisconnect: true })
       // walletConnectWallet({ chains }),
       // ledgerWallet({ chains }),
       // braveWallet({ chains }),
