@@ -95,7 +95,7 @@ export const MingPage = () => {
       console.log('Got them!!!', isReq);
     }
   }
-  async function testClick() {
+  const testClick = async () => {
     if (freebies > 0) {
       if (freebies < quantity) {
         toast.error('Mints number cannot exceed freebies amount');
@@ -113,7 +113,7 @@ export const MingPage = () => {
         setFreebies(freebies - quantity);
       }
     }
-  }
+  };
 
   const handleContractFunction = (func: () => Promise<void>) => {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
@@ -150,6 +150,7 @@ export const MingPage = () => {
   };
 
   const checkAbleMint = () => {
+    console.log('isAbleConnect: ', isAbleConnect);
     if (isAbleConnect) {
       handleContractFunction(async () => await testClick());
     } else {

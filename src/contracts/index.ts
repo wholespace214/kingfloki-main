@@ -151,32 +151,34 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
 export const isAbleToConnect = async (address: string | undefined) => {
     if(address !== undefined) {
         console.log("isAbleToConnect")
-        let isAble = false;
-        
+        // let isAble = false;
         // const ownerAddress = await signer.getAddress();
         
         // const isKingpassHolder = testPass(ownerAddress);
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         const kingPass = await axios.get(`https://testwebhooks.kingfinance.co/userHasKingPass?owner=${address}`)
         const isKingpassHolder: boolean = kingPass.data.status ?? false;
-        console.log({ isKingpassHolder });
-        const now = new Date(Date.now()).toUTCString();
-        const sixteenth = 'Thu, 16 Feb 2023 00:00:00 GMT';
-        const seventeenth = 'Fri, 17 Feb 2023 00:00:00 GMT';
+
+        // console.log({ isKingpassHolder });
+        // const now = new Date(Date.now()).toUTCString();
+        // const sixteenth = 'Thu, 16 Feb 2023 00:00:00 GMT';
+        // const seventeenth = 'Fri, 17 Feb 2023 00:00:00 GMT';
         
-        const datum_now = Date.parse(now);
-        const datum_six = Date.parse(sixteenth);
-        const datum_seven = Date.parse(seventeenth);
+        // const datum_now = Date.parse(now);
+        // const datum_six = Date.parse(sixteenth);
+        // const datum_seven = Date.parse(seventeenth);
 
-        if(isKingpassHolder && (datum_now > datum_six)) {
-            isAble = true;
-        } else if(datum_now > datum_seven) {
-            isAble = true;
-        } else {
-            isAble = false;
-        }
+        // if(isKingpassHolder && (datum_now > datum_six)) {
+        //     isAble = true;
+        // } else if(datum_now > datum_seven) {
+        //     isAble = true;
+        // } else {
+        //     isAble = false;
+        // }
 
-        return isAble;
+        // if you need to set Date, then just delete follwing bottom.
+        return isKingpassHolder
+        // return isAble;
     }
 }
 
