@@ -31,10 +31,12 @@ export const NFTMintCostInEth = async () => {
 
 export const getFreebiesCount = async () => {
     console.log("getFreebiesCount")
+    console.log({ signer, NFTWithSigner })
     if(signer !== null && signer !== undefined) {
         const group_id = 0
         const ownerAddress = await signer.getAddress();
         console.log("getFreebiesCount - address: ", ownerAddress);
+        console.log({ signer, NFTWithSigner })
         const freeMintAvailable = await NFTWithSigner.freeMintsAvailable(ownerAddress, group_id);
         const _freeMintAvailable = parseInt(freeMintAvailable);
         console.log("freeMintAvailable", freeMintAvailable, "parseInt: ", _freeMintAvailable);
@@ -44,6 +46,7 @@ export const getFreebiesCount = async () => {
 
 export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>, quantity: number) => {
     if(signer !== null && signer !== undefined && NFTWithSigner !== null) {
+        
         const group_id = 0
         const ownerAddress = await signer.getAddress();
 
