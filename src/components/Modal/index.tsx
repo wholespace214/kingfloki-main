@@ -21,9 +21,9 @@ export const Modal = (props: ModalProps) => {
   const { isState, setState } = props;
   return (
     <ModalContainer isShow={isState}>
-        <ModalWrapper>
-            <SideBar setState={setState} />
-        </ModalWrapper>
+      <ModalWrapper>
+        <SideBar setState={setState} />
+      </ModalWrapper>
     </ModalContainer>
   );
 };
@@ -35,13 +35,13 @@ const ModalStyle = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: #2B0707;
+  background: #2b0707;
   transition: all linear 0.6s;
 `;
 
 const ModalWrapper = styled.div`
-    padding: 30px;
-`
+  padding: 30px;
+`;
 
 const ModalContainer = ({ isShow, children }: ModalContainerProps) => {
   return (
@@ -54,12 +54,33 @@ const SideBar = ({ setState }: SidebarProps) => {
   return (
     <SideBarContainer>
       <SideBarAction>
-        <Img onClick={() => {navigate("/"); setState(false) }} src={Logo} alt="kingpass-logo" />
+        <Img
+          onClick={() => {
+            navigate('/');
+            setState(false);
+          }}
+          src={Logo}
+          alt="kingpass-logo"
+        />
         <CloseButton setState={setState} />
       </SideBarAction>
       <SideBarContent>
-        <SidebarItem onClick={() => {navigate('/wearable'); setState(false)}}>Wearables</SidebarItem>
-        <SidebarItem>Evolve</SidebarItem>
+        <SidebarItem
+          onClick={() => {
+            navigate('/wearable');
+            setState(false);
+          }}
+        >
+          Wearables
+        </SidebarItem>
+        <SidebarItem
+          onClick={() => {
+            navigate('/evolve');
+            setState(false);
+          }}
+        >
+          Evolve
+        </SidebarItem>
         <SidebarItem>King Pass</SidebarItem>
         <SidebarItem>King</SidebarItem>
         <SidebarItem>Docs</SidebarItem>
@@ -94,7 +115,7 @@ const CloseButtonContainer = styled.div`
   height: 27px;
   font-family: 'gotham-bold';
   font-size: 9px;
-  color: #F48E37;
+  color: #f48e37;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
