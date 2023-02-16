@@ -4,6 +4,7 @@ import RadioButton from 'src/components/Radio';
 import styled from 'styled-components';
 import { ConnectWarningSvg, NoNFTSvg } from 'src/config/image';
 import { useAccount } from 'wagmi';
+import { PotionNFT } from 'src/components/NFT/PotionNFT';
 
 export const EvolveNFTs = () => {
   const [isEvolve, setEvolve] = useState('');
@@ -53,6 +54,11 @@ export const EvolveNFTs = () => {
         ) : (
           <Warning emoticon={NoNFTSvg} alert="SORRY!! YOU DON’T HAVE WEARABLES TO EVOLVE" />
         )}
+        <NFTItemList>
+          {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+            <PotionNFT key={item} />
+          ))} */}
+        </NFTItemList>
       </EvolveContent>
     </EvolveNFTsContainer>
   );
@@ -300,4 +306,11 @@ const MobilePotionLabelContainer = styled.div`
     align-items: center;
     gap: 17px;
   }
+`;
+
+const NFTItemList = styled.div`
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 `;
