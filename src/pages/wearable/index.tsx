@@ -1,17 +1,19 @@
-import { DiveWorld } from "./DiveWorld"
-import { NFTExplore } from "./NFTExplore"
-import { PlayCards } from "./PlayCards"
-import { TopSection } from "./TopSection"
-import { Welcome } from "./Welcome"
+import { Combination } from './Combination';
+import { Explanation } from './Explanation';
+import { GamePanel } from './GamePanel';
+import { GiftCards } from './GiftCards';
+import { MingPage } from './MintPage';
+import { Wearable } from './Wearable';
 
-export const Wearable = () => {
-    return(
-        <>
-            <TopSection />
-            <Welcome />
-            <NFTExplore />
-            <PlayCards />
-            <DiveWorld />
-        </>
-    )
-}
+export const Wearables = () => {
+  return (
+    <>
+      <Wearable />
+      <MingPage />
+      <Explanation />
+      <Combination />
+      <GiftCards />
+      <GamePanel />
+    </>
+  );
+};

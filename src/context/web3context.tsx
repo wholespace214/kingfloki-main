@@ -30,6 +30,8 @@ export const Web3Provider = (props: propsType) => {
           setInitialized(res);
         });
       })();
+    } else {
+      setInitialized(false);
     }
   }, [isConnected, signer]);
 

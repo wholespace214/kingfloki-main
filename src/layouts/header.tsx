@@ -10,18 +10,6 @@ import { CustomConnectButton } from 'src/components/Button';
 export const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
-  // const [isAbleConnect, setAbleConnect] = useState(false);
-  // const handleTempClick = () => {
-  //   toast.error('Be ready to mint on the 17th of February, stay tuned!');
-  // };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const isAble = await isAbleToConnect();
-  //     console.log({ isAble });
-  //     if (isAble !== undefined) setAbleConnect(isAble);
-  //   })();
-  // }, []);
 
   return (
     <>
@@ -35,6 +23,7 @@ export const Header = () => {
         <HeaderAction>
           <HeaderLinks>
             <NavLink onClick={() => navigate('/wearable')}>Wearables</NavLink>
+            <NavLink onClick={() => navigate('/evolve')}>Evolve</NavLink>
             {/* <NavLink>Evolve</NavLink> */}
             <ALink href="https://kingpass.finance/" rel="noopenner noreferror" target={'_blank'}>
               <NavLink>King pass</NavLink>
