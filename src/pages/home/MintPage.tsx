@@ -210,33 +210,35 @@ export const MingPage = () => {
                   )}
                 </MintButtonBox>
               </MintCardAction>
-              <MintCardFooter>
-                <EtherValueContainer>
-                  <Label>
-                    <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
-                    Price
-                  </Label>
-                  <EtherValue>{isConnected ? (randomMintCost === '0' ? '-' : randomMintCost) : '-'} ETH</EtherValue>
-                </EtherValueContainer>
-                <EtherValueContainer>
-                  <Label>
-                    <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
-                    Total
-                  </Label>
-                  <EtherValue>
-                    {isConnected
-                      ? randomMintCost === '0'
-                        ? '-'
-                        : (parseFloat(randomMintCost) * quantity).toFixed(3)
-                      : '-'}{' '}
-                    ETH
-                  </EtherValue>
-                </EtherValueContainer>
-                <FreebiesContainer>
-                  <FreebiesLabel>Freebies</FreebiesLabel>
-                  <FreebiesValue>{freebies}</FreebiesValue>
-                </FreebiesContainer>
-              </MintCardFooter>
+              {parseInt(randomMintCost) < 1000 && (
+                <MintCardFooter>
+                  <EtherValueContainer>
+                    <Label>
+                      <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
+                      Price
+                    </Label>
+                    <EtherValue>{isConnected ? (randomMintCost === '0' ? '-' : randomMintCost) : '-'} ETH</EtherValue>
+                  </EtherValueContainer>
+                  <EtherValueContainer>
+                    <Label>
+                      <EtherIcon src={EthereumSvg} alt="ethereum-icon" />
+                      Total
+                    </Label>
+                    <EtherValue>
+                      {isConnected
+                        ? randomMintCost === '0'
+                          ? '-'
+                          : (parseFloat(randomMintCost) * quantity).toFixed(3)
+                        : '-'}{' '}
+                      ETH
+                    </EtherValue>
+                  </EtherValueContainer>
+                  <FreebiesContainer>
+                    <FreebiesLabel>Freebies</FreebiesLabel>
+                    <FreebiesValue>{freebies}</FreebiesValue>
+                  </FreebiesContainer>
+                </MintCardFooter>
+              )}
             </MintCardContentWraper>
           </MintCardContent>
         </MintCard>
