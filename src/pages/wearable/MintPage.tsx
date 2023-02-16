@@ -52,12 +52,12 @@ export const MingPage = () => {
         const cost = await NFTMintCostInEth();
         // const cost = 0.033;
         if (cost !== undefined) {
-          const _cost = (cost / Math.pow(10, 18)).toFixed(4);
+          const _cost = parseFloat(ethers.utils.formatEther(cost.toString())).toFixed(4);
           // setRandomMintCost(ethers.utils.formatEther(cost));
-          setRandomMintCost(_cost);
+          setRandomMintCost(_cost.toString());
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        const api_call = await axios.get(`https://testwebhooks.kingfinance.co/pendingNfts?owner=${address}`);
+        const api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${address}`);
         /* eslint-disable no-console */
         console.log('we?', api_call);
         const awaiting_mints = api_call.data.data.length;
@@ -70,8 +70,6 @@ export const MingPage = () => {
         const isAble = await isAbleToConnect(address);
         setAbleconnect(isAble ?? false);
       })();
-    } else {
-      setRandomMintCost('0');
     }
   }, [isInitialized]);
 

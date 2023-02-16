@@ -21,18 +21,16 @@ export const initializeWeb3 = async (provider_: any, signer_: any) => {
 };
 
 export const NFTMintCostInEth = async () => {
-    if( NFT !== null && provider !== null) {
+    if (NFT !== null && provider !== null) {
         const tx = await NFT.randomNftMintCostETH();
-        const _tx = parseInt(tx);
-        console.log({ _tx });
-        return _tx;
+        return tx;
     }
 }
 
 export const getFreebiesCount = async () => {
     console.log("getFreebiesCount")
     console.log({ signer, NFTWithSigner })
-    if(signer !== null && signer !== undefined) {
+    if (signer !== null && signer !== undefined) {
         const group_id = 0
         const ownerAddress = await signer.getAddress();
         console.log("getFreebiesCount - address: ", ownerAddress);
@@ -45,8 +43,8 @@ export const getFreebiesCount = async () => {
 }
 
 export const requestMintRandomNft = async (handleStatus: (value: number) => Promise<void>, quantity: number) => {
-    if(signer !== null && signer !== undefined && NFTWithSigner !== null) {
-        
+    if (signer !== null && signer !== undefined && NFTWithSigner !== null) {
+
         const group_id = 0
         const ownerAddress = await signer.getAddress();
 
@@ -57,8 +55,8 @@ export const requestMintRandomNft = async (handleStatus: (value: number) => Prom
             await tx.wait()
         } else {
             const _randomAmount = await NFTMintCostInEth();
-            if(_randomAmount !== undefined) {
-                const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, quantity, group_id, { value: _randomAmount * quantity });
+            if (_randomAmount !== undefined) {
+                const tx = await NFTWithSigner.requestMintRandomNft(ownerAddress, quantity, group_id, { value: _randomAmount.mul(quantity) });
                 handleStatus(2)
                 await tx.wait()
             }
@@ -73,7 +71,7 @@ const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number
     let api_call;
     try {
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        api_call = await axios.get(`https://testwebhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
+        api_call = await axios.get(`https://webhooks.kingfinance.co/pendingNfts?owner=${ownerAddress}`);
     } catch (error) {
         console.log("error: ", error)
         toast.error("sorry! something went wrong! ask help in the official group");
@@ -83,9 +81,9 @@ const generateTicketApi = async (ownerAddress: any, handleStatus: (value: number
     if (awaiting_mints === 0) {
         if (idx < 4) {
             console.log("idx: ", idx);
-            setTimeout(() => { 
-                (async() => {
-                    await generateTicketApi(ownerAddress, handleStatus, idx + 1) 
+            setTimeout(() => {
+                (async () => {
+                    await generateTicketApi(ownerAddress, handleStatus, idx + 1)
                 })()
             }, 3000);
         } else {
@@ -136,9 +134,9 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
     // loop for every nft id
     for (const single_nft of NftIds) {
         // get nft info
-        const nft_info = await axios.get(`https://testwebhooks.kingfinance.co/tokenInfo?tokenId=${parseInt(single_nft)}`);
+        const nft_info = await axios.get(`https://webhooks.kingfinance.co/tokenInfo?tokenId=${parseInt(single_nft)}`);
         // get nft image
-        const nft_image = await axios.get(`https://testwebhooks.kingfinance.co/tokenImage?tokenId=${parseInt(single_nft)}`);
+        const nft_image = await axios.get(`https://webhooks.kingfinance.co/tokenImage?tokenId=${parseInt(single_nft)}`);
         // push to final results
         finalResult.push({ nft_info: nft_info.data, nft_image: nft_image.data })
     }
@@ -149,21 +147,21 @@ export const getNftsFromApi = async (handleStatus: (value: number) => Promise<vo
 }
 
 export const isAbleToConnect = async (address: string | undefined) => {
-    if(address !== undefined) {
+    if (address !== undefined) {
         console.log("isAbleToConnect")
         // let isAble = false;
         // const ownerAddress = await signer.getAddress();
-        
+
         // const isKingpassHolder = testPass(ownerAddress);
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        const kingPass = await axios.get(`https://testwebhooks.kingfinance.co/userHasKingPass?owner=${address}`)
+        const kingPass = await axios.get(`https://webhooks.kingfinance.co/userHasKingPass?owner=${address}`)
         const isKingpassHolder: boolean = kingPass.data.status ?? false;
 
         // console.log({ isKingpassHolder });
         // const now = new Date(Date.now()).toUTCString();
         // const sixteenth = 'Thu, 16 Feb 2023 00:00:00 GMT';
         // const seventeenth = 'Fri, 17 Feb 2023 00:00:00 GMT';
-        
+
         // const datum_now = Date.parse(now);
         // const datum_six = Date.parse(sixteenth);
         // const datum_seven = Date.parse(seventeenth);
@@ -187,8 +185,8 @@ const testPass = (user_address: string) => {
         "0xE6Aa61C88BC4a178E53aD2d2A3BC0b07Fcfd576a"
     ]
     let isActive = false;
-    for(const single_address of kingpass_addresses) {
-        if(single_address === user_address) {
+    for (const single_address of kingpass_addresses) {
+        if (single_address === user_address) {
             isActive = true;
         }
     }

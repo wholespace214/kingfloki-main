@@ -6,8 +6,8 @@ import './index.css';
 
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { metaMaskWallet, trustWallet } from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { polygonMumbai } from 'wagmi/chains';
+import { configureChains, createClient, mainnet, WagmiConfig } from 'wagmi';
+/* import { polygonMumbai } from 'wagmi/chains'; */
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
@@ -19,8 +19,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 window.Buffer = require('buffer').Buffer;
 
 const { chains, provider } = configureChains(
-  [polygonMumbai],
-  [alchemyProvider({ apiKey: 'GdsYp03ZUyka82YZVD15v7yl6qY-cIuE' }), publicProvider()]
+  [mainnet],
+  [alchemyProvider({ apiKey: '2bUhHtQMTtBoddEB-hRwtnL6fZ6Y5Gnu' }), publicProvider()]
 );
 
 const connectors = connectorsForWallets([
