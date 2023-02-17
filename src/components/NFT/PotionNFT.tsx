@@ -59,7 +59,7 @@ const PotionNFTWrapper = styled.div`
 `;
 
 const NFTImage = styled.img`
-  width: 100%;
+  width: auto;
   height: auto;
 `;
 const PotionNFTFooter = styled.div`
