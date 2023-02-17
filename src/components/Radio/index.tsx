@@ -75,11 +75,6 @@ const Indicator = styled.div`
   }
 `;
 
-const RadioContainer = styled.div`
-  width: 100px;
-  position: relative;
-`;
-
 interface RadioButtonProps {
   name: string;
   label: string;

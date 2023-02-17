@@ -1,18 +1,50 @@
 /* eslint-disable no-console */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RadioButton from 'src/components/Radio';
 import styled from 'styled-components';
-import { ConnectWarningSvg, NoNFTSvg } from 'src/config/image';
+import { ConnectWarningSvg, NoNFTSvg, MintCardGif } from 'src/config/image';
 import { useAccount } from 'wagmi';
 import { PotionNFT } from 'src/components/NFT/PotionNFT';
+import { NFTData } from 'src/config/nftData';
+
+interface nftDataProps {
+  id: number;
+  image: string;
+  primary: string;
+  secondary: string;
+  isSelected: boolean;
+}
 
 export const EvolveNFTs = () => {
   const [isEvolve, setEvolve] = useState('');
   const { isConnected } = useAccount();
+  const [nftArr, setNftArr] = useState(NFTData);
+  const [selectedCount, setSelectedCount] = useState(0);
 
   const handleChange = (inputValue: string) => {
     setEvolve(inputValue);
   };
+
+  const handleNFTData = (id: number) => {
+    const newSelected = [...nftArr];
+    newSelected[id].isSelected = !newSelected[id].isSelected;
+    setNftArr(newSelected);
+  };
+
+  useEffect(() => {
+    let cnt = 0;
+    for (let i = 0; i < nftArr.length; i++) {
+      if (nftArr[i].isSelected) {
+        cnt++;
+      }
+    }
+    setSelectedCount(cnt);
+  }, [nftArr]);
+
+  const handleEvolve = () => {
+    console.log({ nftArr });
+  };
+
   return (
     <EvolveNFTsContainer>
       <EvolveNavBar>
@@ -43,21 +75,30 @@ export const EvolveNFTs = () => {
           </RadioController>
           <RadioProvider>
             <PotionLabel label="Your Potion" value={3} />
-            <SelectLabel label="Selected" value="0/10" />
-            <EvolveButton disabled={true}>Evolve</EvolveButton>
+            <SelectLabel label="Selected" value={`${selectedCount}/${nftArr.length}`} />
+            <EvolveButton disabled={false} onClick={handleEvolve}>
+              Evolve
+            </EvolveButton>
           </RadioProvider>
         </EvolveNavBarContainer>
       </EvolveNavBar>
       <EvolveContent>
-        {!isConnected ? (
+        {/* {!isConnected ? (
           <Warning emoticon={ConnectWarningSvg} alert="CONNECT YOUR WALLET TO START EVOLVING YOUR WEARABLES" />
         ) : (
           <Warning emoticon={NoNFTSvg} alert="SORRY!! YOU DON’T HAVE WEARABLES TO EVOLVE" />
-        )}
+        )} */}
         <NFTItemList>
-          {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-            <PotionNFT key={item} />
-          ))} */}
+          {nftArr.map((item) => (
+            <div key={item.id} onClick={() => handleNFTData(item.id)}>
+              <PotionNFT
+                image={item.image}
+                primary={item.primary}
+                secondary={item.secondary}
+                isSelected={item.isSelected}
+              />
+            </div>
+          ))}
         </NFTItemList>
       </EvolveContent>
     </EvolveNFTsContainer>
@@ -69,9 +110,13 @@ const EvolveNFTsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding: 60px 0 136px 0;
   @media screen and (max-width: 1096px) {
     width: auto;
+  }
+
+  @media screen and (max-width: 640px) {
+    padding: 60px 0;
   }
 `;
 
@@ -313,4 +358,12 @@ const NFTItemList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+  @media screen and (max-width: 1096px) {
+    padding-top: 80px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 840px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
